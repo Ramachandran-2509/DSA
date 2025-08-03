@@ -1,17 +1,17 @@
 // largest number in an array in DSA concepts
 
-function largestNumber(arr) {
-    let max = arr[0];
-    for (let i = 1; i < arr.length; i++) {
-        if (arr[i] > max) {
-            max = arr[i];
-        }
-    }
-    return max;
-} 
-// Example usage
-const numbers = [3, 5, 7, 2, 8];
-console.log("Largest number in the array:",largestNumber(numbers));
+// function largestNumber(arr) {
+//     let max = arr[0];
+//     for (let i = 1; i < arr.length; i++) {
+//         if (arr[i] > max) {
+//             max = arr[i];
+//         }
+//     }
+//     return max;
+// } 
+// // Example usage
+// const numbers = [3, 5, 7, 2, 8];
+// console.log("Largest number in the array:",largestNumber(numbers));
 // // smallest number in an array in DSA concepts
 // function smallestNumber(arr) {
 //     let min = arr[0];
