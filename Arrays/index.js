@@ -39,6 +39,7 @@
 
 
 // second largest number in an array in DSA concepts
+
 // function secondLargestNumber(arr) {
 //     let first = -Infinity;
 //     let second = -Infinity;
@@ -75,3 +76,42 @@
         
 //     }
 // }
+
+
+
+// check if array is sorted in DSA concepts
+
+// function isSorted(arr) {
+//     for (let i = 0; i < arr.length - 1; i++) {
+//         if (arr[i] > arr[i + 1]) {
+//             return false;
+//         }
+//     }
+//     return true;
+// }
+// // Example usage
+// const numbers = [1, 2, 3, 4, 5];
+// console.log("Is the array sorted?", isSorted(numbers));
+
+// Improved version with better edge case handling and flexibility
+// function isSortedImproved(arr, order = 'ascending') {
+//     // Handle edge cases
+//     if (!arr || arr.length <= 1) {
+//         return true;
+//     }
+    
+//     for (let i = 0; i < arr.length - 1; i++) {
+//         if (order === 'ascending' && arr[i] > arr[i + 1]) {
+//             return false;
+//         } else if (order === 'descending' && arr[i] < arr[i + 1]) {
+//             return false;
+//         }
+//     }
+//     return true;
+}
+
+// Example usage
+// const numbers5 = [1, 2, 3, 4, 5];
+// console.log("Is the array sorted?", isSorted(numbers5));
+// console.log("Is the array sorted (ascending)?", isSortedImproved(numbers5, 'ascending'));
+// console.log("Is the array sorted (descending)?", isSortedImproved([5, 4, 3, 2, 1], 'descending'));
