@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Objects</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        .section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 2px solid #ecf0f1;
+            border-radius: 10px;
+            background: #f8f9fa;
+        }
+        .section h2 {
+            color: #3498db;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .example {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        .interactive {
+            background: #9b59b6;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+        input, select, textarea {
+            padding: 8px;
+            border: 2px solid #bdc3c7;
+            border-radius: 5px;
+            margin: 5px;
+            width: 200px;
+        }
+        textarea {
+            width: 300px;
+            height: 100px;
+            resize: vertical;
+        }
+        .nav-buttons {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .nav-buttons button {
+            background: #34495e;
+            margin: 0 10px;
+        }
+        .result-display {
+            background: #34495e;
+            color: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+        }
+        .object-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .object-card {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        .property-input {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+        }
+        .property-input input {
+            flex: 1;
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏗️ JavaScript Objects</h1>
+        
+        <div class="nav-buttons">
+            <button onclick="window.location.href='../05-Arrays/index.html'">⬅️ Previous: Arrays</button>
+            <button onclick="window.location.href='../README.md'">📚 Back to Guide</button>
+            <button onclick="window.location.href='../07-Strings/index.html'">➡️ Next: Strings</button>
+        </div>
+
+        <!-- Object Creation -->
+        <div class="section">
+            <h2>🏗️ Object Creation</h2>
+            <div class="example">
+// Object literal
+let person = {
+    name: "John",
+    age: 30,
+    city: "New York"
+};
+
+// Object constructor
+let car = new Object();
+car.brand = "Toyota";
+car.model = "Camry";
+
+// Object.create()
+let animal = Object.create(null);
+animal.type = "Dog";
+animal.breed = "Golden Retriever";
+
+// Factory function
+function createUser(name, email) {
+    return {
+        name: name,
+        email: email,
+        greet() {
+            return `Hello, I'm ${this.name}`;
+        }
+    };
+}
+            </div>
+            
+            <div class="interactive">
+                <h3>🎮 Object Creator</h3>
+                <div id="propertyInputs">
+                    <div class="property-input">
+                        <input type="text" placeholder="Property name" class="prop-name">
+                        <input type="text" placeholder="Property value" class="prop-value">
+                    </div>
+                </div>
+                <button onclick="addPropertyInput()">Add Property</button>
+                <button onclick="createObject()">Create Object</button>
+                <div id="objectResult"></div>
+            </div>
+        </div>
+
+        <!-- Object Properties -->
+        <div class="section">
+            <h2>🔧 Object Properties</h2>
+            <div class="example">
+// Accessing properties
+let user = { name: "Alice", age: 25 };
+console.log(user.name);        // Dot notation
+console.log(user["age"]);      // Bracket notation
+
+// Adding properties
+user.email = "alice@email.com";
+user["phone"] = "123-456-7890";
+
+// Deleting properties
+delete user.phone;
+
+// Property descriptors
+Object.defineProperty(user, 'id', {
+    value: 12345,
+    writable: false,
+    enumerable: true,
+    configurable: false
+});
+
+// Checking properties
+console.log('name' in user);           // true
+console.log(user.hasOwnProperty('age')); // true
+            </div>
+            
+            <div class="interactive">
+                <h3>🎮 Property Manager</h3>
+                <input type="text" id="propertyName" placeholder="Property name">
+                <input type="text" id="propertyValue" placeholder="Property value">
+                <button onclick="addProperty()">Add Property</button>
+                <button onclick="deleteProperty()">Delete Property</button>
+                <button onclick="checkProperty()">Check Property</button>
+                <div id="propertyResult"></div>
+            </div>
+        </div>
+
+        <!-- Object Methods -->
+        <div class="section">
+            <h2>⚙️ Object Methods</h2>
+            <div class="example">
+// Method shorthand (ES6+)
+let calculator = {
+    add(a, b) {
+        return a + b;
+    },
+    subtract(a, b) {
+        return a - b;
+    },
+    multiply(a, b) {
+        return a * b;
+    }
+};
+
+// Method with this context
+let person = {
+    name: "Bob",
+    greet() {
+        return `Hello, I'm ${this.name}`;
+    },
+    introduce(otherPerson) {
+        return `Hi ${otherPerson}, I'm ${this.name}`;
+    }
+};
+
+// Arrow functions and this
+let counter = {
+    count: 0,
+    increment: () => {
+        this.count++; // Won't work - this refers to global
+    },
+    incrementProper() {
+        this.count++; // Works correctly
+    }
+};
+            </div>
+            
+            <div class="interactive">
+                <h3>🎮 Method Tester</h3>
+                <select id="methodSelect">
+                    <option value="add">add(a, b)</option>
+                    <option value="subtract">subtract(a, b)</option>
+                    <option value="multiply">multiply(a, b)</option>
+                </select>
+                <input type="number" id="methodParam1" placeholder="First parameter">
+                <input type="number" id="methodParam2" placeholder="Second parameter">
+                <button onclick="testMethod()">Test Method</button>
+                <div id="methodResult"></div>
+            </div>
+        </div>
+
+        <!-- Object Iteration -->
+        <div class="section">
+            <h2>🔄 Object Iteration</h2>
+            <div class="example">
+let book = {
+    title: "JavaScript Guide",
+    author: "John Doe",
+    year: 2023,
+    pages: 300
+};
+
+// for...in loop
+for (let key in book) {
+    console.log(`${key}: ${book[key]}`);
+}
+
+// Object.keys()
+let keys = Object.keys(book); // ["title", "author", "year", "pages"]
+
+// Object.values()
+let values = Object.values(book); // ["JavaScript Guide", "John Doe", 2023, 300]
+
+// Object.entries()
+let entries = Object.entries(book);
+// [["title", "JavaScript Guide"], ["author", "John Doe"], ...]
+
+// Object methods
+let methods = Object.getOwnPropertyNames(book);
+            </div>
+            
+            <div class="interactive">
+                <h3>🎮 Object Iterator</h3>
+                <button onclick="iterateObject()">Iterate Object</button>
+                <div id="iterationResult"></div>
+            </div>
+        </div>
+
+        <!-- Advanced Object Concepts -->
+        <div class="section">
+            <h2>🚀 Advanced Concepts</h2>
+            <div class="object-grid">
+                <div class="object-card">
+                    <h4>🔗 Object Destructuring</h4>
+                    <div class="example">
+let user = {
+    name: "Alice",
+    age: 25,
+    email: "alice@email.com"
+};
+
+// Basic destructuring
+let { name, age } = user;
+
+// Renaming variables
+let { name: userName, age: userAge } = user;
+
+// Default values
+let { name, age, city = "Unknown" } = user;
+
+// Nested destructuring
+let { address: { street, city } } = user;
+                    </div>
+                </div>
+                
+                <div class="object-card">
+                    <h4>📋 Object Spread</h4>
+                    <div class="example">
+let obj1 = { a: 1, b: 2 };
+let obj2 = { c: 3, d: 4 };
+
+// Spread operator
+let combined = { ...obj1, ...obj2 };
+
+// Override properties
+let updated = { ...obj1, b: 5 };
+
+// Clone object
+let clone = { ...obj1 };
+
+// Merge with new properties
+let extended = { ...obj1, e: 5, f: 6 };
+                    </div>
+                </div>
+                
+                <div class="object-card">
+                    <h4>🔒 Object Freezing</h4>
+                    <div class="example">
+let config = {
+    apiUrl: "https://api.example.com",
+    timeout: 5000
+};
+
+// Object.freeze() - makes object immutable
+Object.freeze(config);
+// config.apiUrl = "new-url"; // Error in strict mode
+
+// Object.seal() - prevents adding/deleting properties
+Object.seal(config);
+// config.newProp = "value"; // Error in strict mode
+
+// Object.preventExtensions() - prevents adding properties
+Object.preventExtensions(config);
+                    </div>
+                </div>
+                
+                <div class="object-card">
+                    <h4>🔍 Object Prototypes</h4>
+                    <div class="example">
+// Constructor function
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+}
+
+Person.prototype.greet = function() {
+    return `Hello, I'm ${this.name}`;
+};
+
+// Class syntax (ES6+)
+class Animal {
+    constructor(species) {
+        this.species = species;
+    }
+    
+    makeSound() {
+        return "Some sound";
+    }
+}
+
+// Inheritance
+class Dog extends Animal {
+    constructor(name) {
+        super("Dog");
+        this.name = name;
+    }
+    
+    makeSound() {
+        return "Woof!";
+    }
+}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

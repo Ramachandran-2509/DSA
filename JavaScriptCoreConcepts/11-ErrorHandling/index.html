@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Error Handling</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        .section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 2px solid #ecf0f1;
+            border-radius: 10px;
+            background: #f8f9fa;
+        }
+        .section h2 {
+            color: #e74c3c;
+            border-bottom: 2px solid #e74c3c;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .example {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        .interactive {
+            background: #e74c3c;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+        input, select, textarea {
+            padding: 8px;
+            border: 2px solid #bdc3c7;
+            border-radius: 5px;
+            margin: 5px;
+            width: 200px;
+        }
+        .nav-buttons {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .nav-buttons button {
+            background: #34495e;
+            margin: 0 10px;
+        }
+        .result-display {
+            background: #34495e;
+            color: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+        }
+        .error-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .error-card {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #e74c3c;
+        }
+        .error-type {
+            background: #e74c3c;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .error-log {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            max-height: 200px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+        }
+        .error-entry {
+            margin: 2px 0;
+            padding: 2px 0;
+        }
+        .error-entry.error { color: #e74c3c; }
+        .error-entry.warning { color: #f39c12; }
+        .error-entry.info { color: #3498db; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚨 JavaScript Error Handling</h1>
+        
+        <div class="nav-buttons">
+            <button onclick="window.location.href='../10-AsyncProgramming/index.html'">⬅️ Previous: Async Programming</button>
+            <button onclick="window.location.href='../README.md'">📚 Back to Guide</button>
+            <button onclick="window.location.href='../12-AdvancedConcepts/index.html'">➡️ Next: Advanced Concepts</button>
+        </div>
+
+        <!-- Error Types -->
+        <div class="section">
+            <h2>🚨 Error Types</h2>
+            <div class="error-grid">
+                <div class="error-card">
+                    <div class="error-type">Error</div>
+                    <h4>Generic Error</h4>
+                    <div class="example">
+// Basic Error object
+const error = new Error("Something went wrong");
+console.log(error.message); // "Something went wrong"
+console.log(error.name); // "Error"
+console.log(error.stack); // Stack trace
+                    </div>
+                </div>
+                
+                <div class="error-card">
+                    <div class="error-type">ReferenceError</div>
+                    <h4>Undefined Variable</h4>
+                    <div class="example">
+// ReferenceError - variable not defined
+try {
+    console.log(undefinedVariable);
+} catch (error) {
+    console.log(error.name); // "ReferenceError"
+    console.log(error.message); // "undefinedVariable is not defined"
+}
+                    </div>
+                </div>
+                
+                <div class="error-card">
+                    <div class="error-type">TypeError</div>
+                    <h4>Invalid Operation</h4>
+                    <div class="example">
+// TypeError - invalid operation
+try {
+    const nullValue = null;
+    nullValue.someMethod();
+} catch (error) {
+    console.log(error.name); // "TypeError"
+    console.log(error.message); // "Cannot read property..."
+}
+                    </div>
+                </div>
+                
+                <div class="error-card">
+                    <div class="error-type">SyntaxError</div>
+                    <h4>Invalid Syntax</h4>
+                    <div class="example">
+// SyntaxError - invalid syntax
+try {
+    eval("const x = ;"); // Invalid syntax
+} catch (error) {
+    console.log(error.name); // "SyntaxError"
+    console.log(error.message); // "Unexpected token..."
+}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="interactive">
+                <h3>🎮 Error Type Tester</h3>
+                <select id="errorTypeSelect">
+                    <option value="Error">Generic Error</option>
+                    <option value="ReferenceError">ReferenceError</option>
+                    <option value="TypeError">TypeError</option>
+                    <option value="SyntaxError">SyntaxError</option>
+                    <option value="RangeError">RangeError</option>
+                    <option value="URIError">URIError</option>
+                </select>
+                <button onclick="testErrorType()">Test Error Type</button>
+                <div id="errorTypeResult"></div>
+            </div>
+        </div>
+
+        <!-- Try-Catch Blocks -->
+        <div class="section">
+            <h2>🛡️ Try-Catch Blocks</h2>
+            <div class="error-grid">
+                <div class="error-card">
+                    <h4>Basic Try-Catch</h4>
+                    <div class="example">
+try {
+    // Risky code
+    const result = riskyOperation();
+    console.log("Success:", result);
+} catch (error) {
+    // Handle error
+    console.error("Error occurred:", error.message);
+} finally {
+    // Always execute
+    console.log("Cleanup completed");
+}
+                    </div>
+                </div>
+                
+                <div class="error-card">
+                    <h4>Multiple Catch Blocks</h4>
+                    <div class="example">
+try {
+    const result = riskyOperation();
+} catch (error) {
+    if (error instanceof TypeError) {
+        console.error("Type error:", error.message);
+    } else if (error instanceof ReferenceError) {
+        console.error("Reference error:", error.message);
+    } else {
+        console.error("Unknown error:", error.message);
+    }
+}
+                    </div>
+                </div>
+                
+                <div class="error-card">
+                    <h4>Async Try-Catch</h4>
+                    <div class="example">
+async function asyncOperation() {
+    try {
+        const result = await fetch('/api/data');
+        const data = await result.json();
+        return data;
+    } catch (error) {
+        console.error("Async error:", error.message);
+        throw error; // Re-throw if needed
+    }
+}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="interactive">
+                <h3>🎮 Try-Catch Tester</h3>
+                <button onclick="testBasicTryCatch()">Test Basic Try-Catch</button>
+                <button onclick="testMultipleCatch()">Test Multiple Catch</button>
+                <button onclick="testAsyncTryCatch()">Test Async Try-Catch</button>
+                <div id="tryCatchResult"></div>
+            </div>
+        </div>
+
+        <!-- Custom Errors -->
+        <div class="section">
+            <h2>🔧 Custom Errors</h2>
+            <div class="error-grid">
+                <div class="error-card">
+                    <h4>Basic Custom Error</h4>
+                    <div class="example">
+class ValidationError extends Error {
+    constructor(message, field) {
+        super(message);
+        this.name = "ValidationError";
+        this.field = field;
+    }
+}
+
+// Usage
+throw new ValidationError("Invalid email", "email");
+                    </div>
+                </div>
+                
+                <div class="error-card">
+                    <h4>Custom Error with Properties</h4>
+                    <div class="example">
+class NetworkError extends Error {
+    constructor(message, statusCode, url) {
+        super(message);
+        this.name = "NetworkError";
+        this.statusCode = statusCode;
+        this.url = url;
+        this.timestamp = new Date();
+    }
+    
+    getDetails() {
+        return `${this.name}: ${this.message} (${this.statusCode}) at ${this.url}`;
+    }
+}
+
+// Usage
+throw new NetworkError("API failed", 500, "/api/users");
+                    </div>
+                </div>
+                
+                <div class="error-card">
+                    <h4>Error Factory</h4>
+                    <div class="example">
+class ErrorFactory {
+    static createValidationError(field, value) {
+        return new ValidationError(
+            `Invalid value for ${field}: ${value}`,
+            field
+        );
+    }
+    
+    static createNetworkError(statusCode, url) {
+        return new NetworkError(
+            `HTTP ${statusCode} error`,
+            statusCode,
+            url
+        );
+    }
+}
+
+// Usage
+throw ErrorFactory.createValidationError("age", -5);
+                    </div>
+                </div>
+            </div>
+            
+            <div class="interactive">
+                <h3>🎮 Custom Error Tester</h3>
+                <button onclick="testCustomError()">Test Custom Error</button>
+                <button onclick="testErrorFactory()">Test Error Factory</button>
+                <div id="customErrorResult"></div>
+            </div>
+        </div>
+
+        <!-- Error Handling Patterns -->
+        <div class="section">
+            <h2>📋 Error Handling Patterns</h2>
+            <div class="error-grid">
+                <div class="error-card">
+                    <h4>Error Boundary Pattern</h4>
+                    <div class="example">
+class ErrorBoundary {
+    constructor() {
+        this.errors = [];
+    }
+    
+    execute(operation) {
+        try {
+            return operation();
+        } catch (error) {
+            this.errors.push({
+                error: error,
+                timestamp: new Date(),
+                context: "ErrorBoundary"
+            });
+            return null;
+        }
+    }
+    
+    getErrors() {
+        return this.errors;
+    }
+}
+                    </div>
+                </div>
+                
+                <div class="error-card">
+                    <h4>Retry Pattern</h4>
+                    <div class="example">
+async function retryOperation(operation, maxRetries = 3) {
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
+        try {
+            return await operation();
+        } catch (error) {
+            if (attempt === maxRetries) {
+                throw error;
+            }
+            console.log(`Attempt ${attempt} failed, retrying...`);
+            await new Promise(resolve => 
+                setTimeout(resolve, 1000 * attempt)
+            );
+        }
+    }
+}
+                    </div>
+                </div>
+                
+                <div class="error-card">
+                    <h4>Fallback Pattern</h4>
+                    <div class="example">
+async function operationWithFallback(primaryOp, fallbackOp) {
+    try {
+        return await primaryOp();
+    } catch (error) {
+        console.log("Primary operation failed, using fallback");
+        try {
+            return await fallbackOp();
+        } catch (fallbackError) {
+            throw new Error(`Both operations failed: ${error.message}, ${fallbackError.message}`);
+        }
+    }
+}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="interactive">
+                <h3>🎮 Error Pattern Tester</h3>
+                <button onclick="testErrorBoundary()">Test Error Boundary</button>
+                <button onclick="testRetryPattern()">Test Retry Pattern</button>
+                <button onclick="testFallbackPattern()">Test Fallback Pattern</button>
+                <div id="errorPatternResult"></div>
+            </div>
+        </div>
+
+        <!-- Global Error Handling -->
+        <div class="section">
+            <h2>🌍 Global Error Handling</h2>
+            <div class="error-grid">
+                <div class="error-card">
+                    <h4>Window Error Handler</h4>
+                    <div class="example">
+// Global error handler
+window.addEventListener('error', (event) => {
+    console.error('Global error:', {
+        message: event.message,
+        filename: event.filename,
+        lineno: event.lineno,
+        colno: event.colno,
+        error: event.error
+    });
+    
+    // Prevent default browser error handling
+    event.preventDefault();
+});
+
+// Unhandled promise rejection
+window.addEventListener('unhandledrejection', (event) => {
+    console.error('Unhandled promise rejection:', {
+        reason: event.reason,
+        promise: event.promise
+    });
+    
+    // Prevent default browser handling
+    event.preventDefault();
+});
+                    </div>
+                </div>
+                
+                <div class="error-card">
+                    <h4>Error Monitoring Service</h4>
+                    <div class="example">
+class ErrorMonitor {
+    constructor() {
+        this.errors = [];
+        this.setupGlobalHandlers();
+    }
+    
+    setupGlobalHandlers() {
+        window.addEventListener('error', (event) => {
+            this.captureError(event.error, {
+                type: 'window.error',
+                filename: event.filename,
+                lineno: event.lineno
+            });
+        });
+        
+        window.addEventListener('unhandledrejection', (event) => {
+            this.captureError(event.reason, {
+                type: 'unhandled.rejection'
+            });
+        });
+    }
+    
+    captureError(error, context = {}) {
+        const errorData = {
+            message: error.message,
+            name: error.name,
+            stack: error.stack,
+            context: context,
+            timestamp: new Date()
+        };
+        
+        this.errors.push(errorData);
+        this.sendToService(errorData);
+    }
+    
+    sendToService(errorData) {
+        // Send to monitoring service
+        console.log("Sending to monitoring service:", errorData);
+    }
+}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="interactive">
+                <h3>🎮 Global Error Handler Tester</h3>
+                <button onclick="testGlobalErrorHandler()">Test Global Error Handler</button>
+                <button onclick="testUnhandledRejection()">Test Unhandled Rejection</button>
+                <button onclick="testErrorMonitor()">Test Error Monitor</button>
+                <div id="globalErrorResult"></div>
+            </div>
+        </div>
+
+        <!-- Debugging Tools -->
+        <div class="section">
+            <h2>🔍 Debugging Tools</h2>
+            <div class="error-grid">
+                <div class="error-card">
+                    <h4>Console Debugging</h4>
+                    <div class="example">
+// Console debugging methods
+console.log("Basic log");
+console.error("Error message");
+console.warn("Warning message");
+console.info("Info message");
+console.debug("Debug message");
+
+// Object inspection
+console.table([
+    { name: "John", age: 30 },
+    { name: "Jane", age: 25 }
+]);
+
+// Grouping
+console.group("User Data");
+console.log("Name: John");
+console.log("Age: 30");
+console.groupEnd();
+
+// Timing
+console.time("operation");
+// ... some operation
+console.timeEnd("operation");
+                    </div>
+                </div>
+                
+                <div class="error-card">
+                    <h4>Stack Trace Analysis</h4>
+                    <div class="example">
+function getStackTrace() {
+    const stack = new Error().stack;
+    const lines = stack.split('\n');
+    
+    // Remove first two lines (Error constructor and getStackTrace)
+    return lines.slice(2).map(line => {
+        // Parse stack trace line
+        const match = line.match(/at\s+(.+?)\s+\((.+?):(\d+):(\d+)\)/);
+        if (match) {
+            return {
+                function: match[1],
+                file: match[2],
+                line: parseInt(match[3]),
+                column: parseInt(match[4])
+            };
+        }
+        return { raw: line.trim() };
+    });
+}
+
+// Usage
+console.log(getStackTrace());
+                    </div>
+                </div>
+                
+                <div class="error-card">
+                    <h4>Error Inspector</h4>
+                    <div class="example">
+class ErrorInspector {
+    static inspect(error) {
+        return {
+            name: error.name,
+            message: error.message,
+            stack: error.stack,
+            constructor: error.constructor.name,
+            properties: Object.getOwnPropertyNames(error),
+            prototype: Object.getPrototypeOf(error).constructor.name
+        };
+    }
+    
+    static getErrorChain(error) {
+        const chain = [];
+        let current = error;
+        
+        while (current) {
+            chain.push({
+                name: current.name,
+                message: current.message
+            });
+            current = current.cause;
+        }
+        
+        return chain;
+    }
+}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="interactive">
+                <h3>🎮 Debug Tools</h3>
+                <button onclick="testConsoleDebugging()">Test Console Debugging</button>
+                <button onclick="testStackTraceAnalysis()">Test Stack Trace</button>
+                <button onclick="testErrorInspector()">Test Error Inspector</button>
+                <button onclick="clearDebugLog()">Clear Debug Log</button>
+                <div id="debugResult"></div>
+            </div>
+        </div>
+
+        <!-- Error Simulation -->
+        <div class="section">
+            <h2>🎭 Error Simulation</h2>
+            <div class="interactive">
+                <h3>🎮 Error Simulator</h3>
+                <input type="text" id="errorMessage" placeholder="Error message" value="Simulated error">
+                <select id="errorType">
+                    <option value="Error">Generic Error</option>
+                    <option value="ReferenceError">ReferenceError</option>
+                    <option value="TypeError">TypeError</option>
+                    <option value="RangeError">RangeError</option>
+                    <option value="SyntaxError">SyntaxError</option>
+                    <option value="URIError">URIError</option>
+                </select>
+                <input type="number" id="errorDelay" placeholder="Delay (ms)" value="1000">
+                <button onclick="simulateError()">Simulate Error</button>
+                <button onclick="simulateAsyncError()">Simulate Async Error</button>
+                <button onclick="simulateUnhandledRejection()">Simulate Unhandled Rejection</button>
+                <div id="simulationResult"></div>
+            </div>
+        </div>
+
+        <!-- Error Log -->
+        <div class="section">
+            <h2>📊 Error Log</h2>
+            <div class="error-log" id="errorLog">
+                <div class="error-entry info">Error log initialized. Errors will appear here.</div>
+            </div>
+            <button onclick="clearErrorLog()">Clear Error Log</button>
+            <button onclick="exportErrorLog()">Export Error Log</button>
+            <button onclick="showErrorStats()">Show Error Statistics</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

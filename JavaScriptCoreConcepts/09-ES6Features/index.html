@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript ES6+ Features</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        .section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 2px solid #ecf0f1;
+            border-radius: 10px;
+            background: #f8f9fa;
+        }
+        .section h2 {
+            color: #3498db;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .example {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        .interactive {
+            background: #9b59b6;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+        input, select, textarea {
+            padding: 8px;
+            border: 2px solid #bdc3c7;
+            border-radius: 5px;
+            margin: 5px;
+            width: 200px;
+        }
+        textarea {
+            width: 300px;
+            height: 100px;
+            resize: vertical;
+        }
+        .nav-buttons {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .nav-buttons button {
+            background: #34495e;
+            margin: 0 10px;
+        }
+        .result-display {
+            background: #34495e;
+            color: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .feature-card {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        .destructuring-demo {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        .module-demo {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        .async-demo {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        .class-demo {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 JavaScript ES6+ Features</h1>
+        
+        <div class="nav-buttons">
+            <button onclick="window.location.href='../08-DOM/index.html'">⬅️ Previous: DOM</button>
+            <button onclick="window.location.href='../README.md'">📚 Back to Guide</button>
+            <button onclick="window.location.href='../10-AsyncProgramming/index.html'">➡️ Next: Async Programming</button>
+        </div>
+
+        <!-- Variable Declarations -->
+        <div class="section">
+            <h2>📝 Variable Declarations (let & const)</h2>
+            <div class="example">
+// ES5: var (function-scoped)
+var x = 10;
+if (true) {
+    var x = 20; // Same variable
+}
+console.log(x); // 20
+
+// ES6: let (block-scoped)
+let y = 10;
+if (true) {
+    let y = 20; // Different variable
+}
+console.log(y); // 10
+
+// ES6: const (block-scoped, immutable reference)
+const PI = 3.14159;
+// PI = 3.14; // Error: Assignment to constant variable
+
+const user = { name: "John" };
+user.name = "Jane"; // OK - object properties can change
+// user = {}; // Error - cannot reassign const
+            </div>
+            
+            <div class="interactive">
+                <h3>🎮 Variable Declaration Tester</h3>
+                <button onclick="testVariableDeclarations()">Test Variable Scoping</button>
+                <div id="variableResult"></div>
+            </div>
+        </div>
+
+        <!-- Template Literals -->
+        <div class="section">
+            <h2>📄 Template Literals</h2>
+            <div class="example">
+// ES5: String concatenation
+let name = "John";
+let age = 30;
+let message = "Hello, " + name + ". You are " + age + " years old.";
+
+// ES6: Template literals
+let message2 = `Hello, ${name}. You are ${age} years old.`;
+
+// Multiline strings
+let multiline = `
+    This is a
+    multiline string
+    without escape characters
+`;
+
+// Expressions in template literals
+let price = 19.99;
+let quantity = 3;
+let total = `Total: $${(price * quantity).toFixed(2)}`;
+
+// Tagged templates
+function highlight(strings, ...values) {
+    return strings.reduce((result, str, i) => {
+        return result + str + (values[i] ? `<mark>${values[i]}</mark>` : '');
+    }, '');
+}
+
+let highlighted = highlight`Hello ${name}, you are ${age} years old!`;
+            </div>
+            
+            <div class="interactive">
+                <h3>🎮 Template Literal Builder</h3>
+                <input type="text" id="templateName" placeholder="Name">
+                <input type="number" id="templateAge" placeholder="Age">
+                <button onclick="buildTemplateLiteral()">Build Template</button>
+                <div id="templateResult"></div>
+            </div>
+        </div>
+
+        <!-- Destructuring -->
+        <div class="section">
+            <h2>🔗 Destructuring</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>Array Destructuring</h4>
+                    <div class="example">
+// Basic array destructuring
+let colors = ["red", "green", "blue"];
+let [first, second, third] = colors;
+
+// Skipping elements
+let [primary, , tertiary] = colors;
+
+// Default values
+let [a, b, c, d = "yellow"] = colors;
+
+// Rest operator
+let [head, ...tail] = colors;
+
+// Swapping variables
+let x = 1, y = 2;
+[x, y] = [y, x];
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>Object Destructuring</h4>
+                    <div class="example">
+// Basic object destructuring
+let person = { name: "John", age: 30, city: "NYC" };
+let { name, age, city } = person;
+
+// Renaming variables
+let { name: userName, age: userAge } = person;
+
+// Default values
+let { name, age, country = "USA" } = person;
+
+// Nested destructuring
+let user = {
+    id: 1,
+    profile: {
+        firstName: "John",
+        lastName: "Doe"
+    }
+};
+let { profile: { firstName, lastName } } = user;
+
+// Rest operator
+let { name, ...otherProps } = person;
+                    </div>
+                </div>
+            </div>
+            
+            <div class="destructuring-demo">
+                <h3>🎮 Destructuring Tester</h3>
+                <button onclick="testArrayDestructuring()">Test Array Destructuring</button>
+                <button onclick="testObjectDestructuring()">Test Object Destructuring</button>
+                <div id="destructuringResult"></div>
+            </div>
+        </div>
+
+        <!-- Arrow Functions -->
+        <div class="section">
+            <h2>🏹 Arrow Functions</h2>
+            <div class="example">
+// ES5: Function expression
+let add = function(a, b) {
+    return a + b;
+};
+
+// ES6: Arrow function
+let addArrow = (a, b) => a + b;
+
+// Single parameter (parentheses optional)
+let square = x => x * x;
+
+// No parameters
+let getRandom = () => Math.random();
+
+// Multiple statements
+let processData = (data) => {
+    let result = data.map(item => item * 2);
+    return result.filter(item => item > 10);
+};
+
+// Object literal return
+let createUser = (name, age) => ({ name, age });
+
+// Array methods with arrow functions
+let numbers = [1, 2, 3, 4, 5];
+let doubled = numbers.map(n => n * 2);
+let evens = numbers.filter(n => n % 2 === 0);
+let sum = numbers.reduce((acc, n) => acc + n, 0);
+
+// 'this' context (important difference)
+let timer = {
+    seconds: 0,
+    start() {
+        setInterval(() => {
+            this.seconds++;
+            console.log(this.seconds);
+        }, 1000);
+    }
+};
+            </div>
+            
+            <div class="interactive">
+                <h3>🎮 Arrow Function Converter</h3>
+                <textarea id="functionInput" placeholder="Enter a function to convert to arrow function"></textarea>
+                <button onclick="convertToArrowFunction()">Convert</button>
+                <div id="arrowFunctionResult"></div>
+            </div>
+        </div>
+
+        <!-- Default Parameters -->
+        <div class="section">
+            <h2>⚙️ Default Parameters</h2>
+            <div class="example">
+// ES5: Default parameters
+function greet(name) {
+    name = name || "Guest";
+    return "Hello, " + name + "!";
+}
+
+// ES6: Default parameters
+function greetES6(name = "Guest", greeting = "Hello") {
+    return `${greeting}, ${name}!`;
+}
+
+// Default parameters with destructuring
+function createUser({ name = "Anonymous", age = 18, email = "" } = {}) {
+    return { name, age, email };
+}
+
+// Default parameters are evaluated at call time
+function getDefaultValue() {
+    return Math.random();
+}
+
+function testDefaults(value = getDefaultValue()) {
+    return value;
+}
+
+// Default parameters can reference previous parameters
+function createURL(base = "https://api.example.com", endpoint = "users", id = 1) {
+    return `${base}/${endpoint}/${id}`;
+}
+            </div>
+            
+            <div class="interactive">
+                <h3>🎮 Default Parameter Tester</h3>
+                <input type="text" id="paramName" placeholder="Name (optional)">
+                <input type="text" id="paramGreeting" placeholder="Greeting (optional)">
+                <button onclick="testDefaultParameters()">Test Function</button>
+                <div id="defaultParamResult"></div>
+            </div>
+        </div>
+
+        <!-- Rest & Spread Operators -->
+        <div class="section">
+            <h2>📦 Rest & Spread Operators</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>Rest Operator (...)</h4>
+                    <div class="example">
+// Rest parameters in functions
+function sum(...numbers) {
+    return numbers.reduce((total, num) => total + num, 0);
+}
+
+// Rest in destructuring
+let [first, second, ...rest] = [1, 2, 3, 4, 5];
+let { name, ...otherProps } = { name: "John", age: 30, city: "NYC" };
+
+// Rest in arrow functions
+let multiply = (...args) => args.reduce((product, num) => product * num, 1);
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>Spread Operator (...)</h4>
+                    <div class="example">
+// Spread in arrays
+let arr1 = [1, 2, 3];
+let arr2 = [...arr1, 4, 5]; // [1, 2, 3, 4, 5]
+
+// Spread in objects
+let obj1 = { a: 1, b: 2 };
+let obj2 = { ...obj1, c: 3 }; // { a: 1, b: 2, c: 3 }
+
+// Copying arrays and objects
+let arrCopy = [...arr1];
+let objCopy = { ...obj1 };
+
+// Merging arrays and objects
+let merged = [...arr1, ...arr2];
+let mergedObj = { ...obj1, ...obj2 };
+
+// Function arguments
+let numbers = [1, 2, 3];
+Math.max(...numbers); // Same as Math.max(1, 2, 3)
+                    </div>
+                </div>
+            </div>
+            
+            <div class="interactive">
+                <h3>🎮 Rest & Spread Tester</h3>
+                <button onclick="testRestOperator()">Test Rest Operator</button>
+                <button onclick="testSpreadOperator()">Test Spread Operator</button>
+                <div id="restSpreadResult"></div>
+            </div>
+        </div>
+
+        <!-- Classes -->
+        <div class="section">
+            <h2>🏛️ Classes</h2>
+            <div class="example">
+// ES5: Constructor function
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+}
+
+Person.prototype.greet = function() {
+    return `Hello, I'm ${this.name}`;
+};
+
+// ES6: Class syntax
+class Person {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    
+    greet() {
+        return `Hello, I'm ${this.name}`;
+    }
+    
+    // Static method
+    static create(name, age) {
+        return new Person(name, age);
+    }
+    
+    // Getter
+    get description() {
+        return `${this.name} is ${this.age} years old`;
+    }
+    
+    // Setter
+    set description(value) {
+        [this.name, this.age] = value.split(' is ').map(part => 
+            part.includes(' years old') ? parseInt(part) : part
+        );
+    }
+}
+
+// Inheritance
+class Employee extends Person {
+    constructor(name, age, salary) {
+        super(name, age);
+        this.salary = salary;
+    }
+    
+    work() {
+        return `${this.name} is working`;
+    }
+    
+    // Method overriding
+    greet() {
+        return `${super.greet()} and I work here`;
+    }
+}
+
+// Private fields (ES2022)
+class BankAccount {
+    #balance = 0;
+    
+    constructor(initialBalance) {
+        this.#balance = initialBalance;
+    }
+    
+    deposit(amount) {
+        this.#balance += amount;
+    }
+    
+    getBalance() {
+        return this.#balance;
+    }
+}
+            </div>
+            
+            <div class="class-demo">
+                <h3>🎮 Class Tester</h3>
+                <input type="text" id="className" placeholder="Name">
+                <input type="number" id="classAge" placeholder="Age">
+                <input type="number" id="classSalary" placeholder="Salary">
+                <button onclick="testClasses()">Create Employee</button>
+                <div id="classResult"></div>
+            </div>
+        </div>
+
+        <!-- Modules -->
+        <div class="section">
+            <h2>📦 Modules</h2>
+            <div class="example">
+// math.js - Module file
+export const PI = 3.14159;
+
+export function add(a, b) {
+    return a + b;
+}
+
+export function multiply(a, b) {
+    return a * b;
+}
+
+// Default export
+export default class Calculator {
+    add(a, b) { return a + b; }
+    subtract(a, b) { return a - b; }
+}
+
+// utils.js - Another module
+export { add as sum, multiply as product };
+export * from './math.js';
+
+// main.js - Importing modules
+import Calculator, { add, multiply, PI } from './math.js';
+import { sum, product } from './utils.js';
+
+// Dynamic imports
+async function loadModule() {
+    const module = await import('./dynamic-module.js');
+    module.doSomething();
+}
+
+// Import with alias
+import { add as addition } from './math.js';
+            </div>
+            
+            <div class="module-demo">
+                <h3>🎮 Module Simulator</h3>
+                <button onclick="simulateModules()">Simulate Module Import/Export</button>
+                <div id="moduleResult"></div>
+            </div>
+        </div>
+
+        <!-- Promises & Async/Await -->
+        <div class="section">
+            <h2>⏳ Promises & Async/Await</h2>
+            <div class="example">
+// ES6: Promises
+function fetchData() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const data = { id: 1, name: "John" };
+            resolve(data);
+        }, 1000);
+    });
+}
+
+// Promise chaining
+fetchData()
+    .then(data => {
+        console.log(data);
+        return fetchData(); // Return another promise
+    })
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+
+// ES2017: Async/Await
+async function getData() {
+    try {
+        const data = await fetchData();
+        console.log(data);
+        const moreData = await fetchData();
+        console.log(moreData);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+// Async function always returns a Promise
+async function getDataAsync() {
+    const data = await fetchData();
+    return data;
+}
+
+// Promise.all - wait for all promises
+async function getAllData() {
+    const promises = [fetchData(), fetchData(), fetchData()];
+    const results = await Promise.all(promises);
+    return results;
+}
+
+// Promise.race - wait for first promise
+async function getFirstData() {
+    const promises = [fetchData(), fetchData(), fetchData()];
+    const result = await Promise.race(promises);
+    return result;
+}
+            </div>
+            
+            <div class="async-demo">
+                <h3>🎮 Async/Await Tester</h3>
+                <button onclick="testAsyncAwait()">Test Async Function</button>
+                <button onclick="testPromiseAll()">Test Promise.all</button>
+                <div id="asyncResult"></div>
+            </div>
+        </div>
+
+        <!-- Other ES6+ Features -->
+        <div class="section">
+            <h2>🔧 Other ES6+ Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>Symbols</h4>
+                    <div class="example">
+// Unique identifiers
+const sym1 = Symbol();
+const sym2 = Symbol('description');
+const sym3 = Symbol('description');
+
+console.log(sym1 === sym2); // false
+console.log(sym2 === sym3); // false
+
+// Symbol properties
+const obj = {
+    [Symbol('id')]: 123,
+    name: 'John'
+};
+
+// Well-known symbols
+const arr = [1, 2, 3];
+arr[Symbol.iterator] = function* () {
+    yield* this.reverse();
+};
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>Map & Set</h4>
+                    <div class="example">
+// Map - key-value pairs
+const map = new Map();
+map.set('key1', 'value1');
+map.set(42, 'value2');
+map.set({}, 'value3');
+
+console.log(map.get('key1')); // 'value1'
+console.log(map.has(42)); // true
+console.log(map.size); // 3
+
+// Set - unique values
+const set = new Set([1, 2, 2, 3, 3, 4]);
+console.log(set); // Set {1, 2, 3, 4}
+console.log(set.size); // 4
+
+set.add(5);
+set.delete(1);
+console.log(set.has(2)); // true
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>Proxy & Reflect</h4>
+                    <div class="example">
+// Proxy - intercept object operations
+const target = { name: 'John' };
+const handler = {
+    get(target, prop) {
+        console.log(`Getting ${prop}`);
+        return target[prop];
+    },
+    set(target, prop, value) {
+        console.log(`Setting ${prop} to ${value}`);
+        target[prop] = value;
+        return true;
+    }
+};
+
+const proxy = new Proxy(target, handler);
+proxy.name; // Logs: Getting name
+proxy.age = 30; // Logs: Setting age to 30
+
+// Reflect - provides methods for interceptable operations
+Reflect.get(target, 'name');
+Reflect.set(target, 'age', 30);
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>Generators</h4>
+                    <div class="example">
+// Generator function
+function* numberGenerator() {
+    yield 1;
+    yield 2;
+    yield 3;
+}
+
+const gen = numberGenerator();
+console.log(gen.next()); // { value: 1, done: false }
+console.log(gen.next()); // { value: 2, done: false }
+console.log(gen.next()); // { value: 3, done: false }
+console.log(gen.next()); // { value: undefined, done: true }
+
+// Generator with parameters
+function* fibonacci() {
+    let [prev, curr] = [0, 1];
+    while (true) {
+        yield curr;
+        [prev, curr] = [curr, prev + curr];
+    }
+}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

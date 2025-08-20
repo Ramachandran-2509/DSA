@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Arrays</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        .section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 2px solid #ecf0f1;
+            border-radius: 10px;
+            background: #f8f9fa;
+        }
+        .section h2 {
+            color: #3498db;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .example {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        .interactive {
+            background: #9b59b6;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+        input, select {
+            padding: 8px;
+            border: 2px solid #bdc3c7;
+            border-radius: 5px;
+            margin: 5px;
+        }
+        .nav-buttons {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .nav-buttons button {
+            background: #34495e;
+            margin: 0 10px;
+        }
+        .result-display {
+            background: #34495e;
+            color: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 JavaScript Arrays</h1>
+        
+        <div class="nav-buttons">
+            <button onclick="window.location.href='../04-Functions/index.html'">⬅️ Previous: Functions</button>
+            <button onclick="window.location.href='../README.md'">📚 Back to Guide</button>
+            <button onclick="window.location.href='../06-Objects/index.html'">➡️ Next: Objects</button>
+        </div>
+
+        <!-- Array Creation -->
+        <div class="section">
+            <h2>🏗️ Array Creation</h2>
+            <div class="example">
+                // Array literal
+                let fruits = ["apple", "banana", "orange"];
+                let numbers = [1, 2, 3, 4, 5];
+                
+                // Array constructor
+                let arr1 = new Array();
+                let arr2 = new Array(1, 2, 3);
+                
+                // Array.from() (ES6+)
+                let arr3 = Array.from("hello"); // ["h", "e", "l", "l", "o"]
+                
+                // Spread operator
+                let combined = [...fruits, ...numbers];
+            </div>
+            
+            <div class="interactive">
+                <h3>🎮 Array Creator</h3>
+                <input type="text" id="arrayElements" placeholder="Enter elements separated by commas">
+                <button onclick="createArray()">Create Array</button>
+                <div id="arrayResult"></div>
+            </div>
+        </div>
+
+        <!-- Array Methods -->
+        <div class="section">
+            <h2>🔧 Array Methods</h2>
+            <div class="example">
+                let arr = [1, 2, 3, 4, 5];
+                
+                // Adding/Removing
+                arr.push(6);        // Add to end
+                arr.pop();          // Remove from end
+                arr.unshift(0);     // Add to beginning
+                arr.shift();        // Remove from beginning
+                
+                // Searching
+                arr.indexOf(3);     // Find index
+                arr.includes(2);    // Check if exists
+                arr.find(x => x > 3); // Find first match
+                
+                // Transformation
+                arr.map(x => x * 2);    // Transform each element
+                arr.filter(x => x > 2); // Filter elements
+                arr.reduce((sum, x) => sum + x, 0); // Reduce to single value
+                
+                // Manipulation
+                arr.slice(1, 4);    // Extract portion
+                arr.reverse();      // Reverse order
+                arr.sort((a, b) => a - b); // Sort
+            </div>
+            
+            <div class="interactive">
+                <h3>🎮 Method Tester</h3>
+                <select id="methodSelect">
+                    <option value="push">push()</option>
+                    <option value="pop">pop()</option>
+                    <option value="map">map()</option>
+                    <option value="filter">filter()</option>
+                    <option value="reduce">reduce()</option>
+                </select>
+                <button onclick="testMethod()">Test Method</button>
+                <div id="methodResult"></div>
+            </div>
+        </div>
+
+        <!-- Advanced Concepts -->
+        <div class="section">
+            <h2>🚀 Advanced Concepts</h2>
+            <div class="example">
+                // Multidimensional arrays
+                let matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
+                
+                // Destructuring
+                let [first, second, ...rest] = [1, 2, 3, 4, 5];
+                
+                // Array-like objects
+                let str = "hello";
+                let charArray = Array.from(str);
+                
+                // Set for unique values
+                let unique = [...new Set([1, 2, 2, 3, 3, 4])];
+                
+                // Typed arrays
+                let intArray = new Int32Array([1, 2, 3, 4]);
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

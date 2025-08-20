@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Variables & Data Types</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        .section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 2px solid #ecf0f1;
+            border-radius: 10px;
+            background: #f8f9fa;
+        }
+        .section h2 {
+            color: #3498db;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .example {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        .output {
+            background: #27ae60;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .warning {
+            background: #f39c12;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .error {
+            background: #e74c3c;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .interactive {
+            background: #9b59b6;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+        input {
+            padding: 8px;
+            border: 2px solid #bdc3c7;
+            border-radius: 5px;
+            margin: 5px;
+        }
+        .nav-buttons {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .nav-buttons button {
+            background: #34495e;
+            margin: 0 10px;
+        }
+        .nav-buttons button:hover {
+            background: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔤 JavaScript Variables & Data Types</h1>
+        
+        <div class="nav-buttons">
+            <button onclick="window.location.href='../README.md'">📚 Back to Guide</button>
+            <button onclick="window.location.href='../02-Operators-Expressions/index.html'">➡️ Next: Operators</button>
+        </div>
+
+        <!-- Variables Section -->
+        <div class="section">
+            <h2>📝 Variables Declaration</h2>
+            
+            <h3>1. var (Function-scoped, hoisted)</h3>
+            <div class="example">
+                var name = "John";
+                var age = 25;
+                console.log(name, age);
+            </div>
+            <div class="warning">
+                ⚠️ var is function-scoped and can be redeclared. Use let/const in modern JavaScript.
+            </div>
+
+            <h3>2. let (Block-scoped, can be reassigned)</h3>
+            <div class="example">
+                let city = "New York";
+                city = "Los Angeles"; // ✅ Can be reassigned
+                console.log(city);
+            </div>
+
+            <h3>3. const (Block-scoped, cannot be reassigned)</h3>
+            <div class="example">
+                const PI = 3.14159;
+                // PI = 3.14; // ❌ Error: Assignment to constant variable
+                console.log(PI);
+            </div>
+
+            <div class="interactive">
+                <h3>🎮 Interactive Example</h3>
+                <input type="text" id="varInput" placeholder="Enter a value">
+                <button onclick="testVariables()">Test Variables</button>
+                <div id="varOutput"></div>
+            </div>
+        </div>
+
+        <!-- Data Types Section -->
+        <div class="section">
+            <h2>🔢 Primitive Data Types</h2>
+            
+            <h3>1. Number</h3>
+            <div class="example">
+                let integer = 42;
+                let float = 3.14;
+                let negative = -17;
+                let infinity = Infinity;
+                let notANumber = NaN;
+                
+                console.log(typeof integer); // "number"
+                console.log(typeof float);   // "number"
+            </div>
+
+            <h3>2. String</h3>
+            <div class="example">
+                let single = 'Hello';
+                let double = "World";
+                let backticks = `Hello ${single}`;
+                
+                console.log(typeof single); // "string"
+                console.log(backticks);     // "Hello Hello"
+            </div>
+
+            <h3>3. Boolean</h3>
+            <div class="example">
+                let isTrue = true;
+                let isFalse = false;
+                
+                console.log(typeof isTrue); // "boolean"
+            </div>
+
+            <h3>4. Undefined</h3>
+            <div class="example">
+                let notDefined;
+                console.log(notDefined);        // undefined
+                console.log(typeof notDefined); // "undefined"
+            </div>
+
+            <h3>5. Null</h3>
+            <div class="example">
+                let empty = null;
+                console.log(empty);        // null
+                console.log(typeof empty); // "object" (JavaScript quirk!)
+            </div>
+
+            <h3>6. Symbol (ES6+)</h3>
+            <div class="example">
+                let symbol = Symbol("description");
+                console.log(typeof symbol); // "symbol"
+            </div>
+
+            <h3>7. BigInt (ES2020+)</h3>
+            <div class="example">
+                let bigNumber = 9007199254740991n;
+                console.log(typeof bigNumber); // "bigint"
+            </div>
+        </div>
+
+        <!-- Type Conversion Section -->
+        <div class="section">
+            <h2>🔄 Type Conversion</h2>
+            
+            <h3>Explicit Conversion</h3>
+            <div class="example">
+                // String to Number
+                let strNum = "42";
+                let num = Number(strNum);
+                let num2 = parseInt("42.5");
+                let num3 = parseFloat("42.5");
+                
+                // Number to String
+                let numStr = 42;
+                let str = String(numStr);
+                let str2 = numStr.toString();
+                
+                // Boolean Conversion
+                let bool = Boolean(1);  // true
+                let bool2 = Boolean(0); // false
+                let bool3 = Boolean(""); // false
+            </div>
+
+            <h3>Implicit Conversion (Type Coercion)</h3>
+            <div class="example">
+                console.log("5" + 3);     // "53" (string concatenation)
+                console.log("5" - 3);     // 2 (number subtraction)
+                console.log("5" * "3");   // 15 (number multiplication)
+                console.log(true + 1);    // 2 (true becomes 1)
+                console.log(false + 1);   // 1 (false becomes 0)
+            </div>
+
+            <div class="interactive">
+                <h3>🎮 Type Conversion Practice</h3>
+                <input type="text" id="convertInput" placeholder="Enter a value">
+                <button onclick="testTypeConversion()">Test Conversion</button>
+                <div id="convertOutput"></div>
+            </div>
+        </div>
+
+        <!-- Template Literals Section -->
+        <div class="section">
+            <h2>📝 Template Literals (ES6+)</h2>
+            
+            <div class="example">
+                let name = "Alice";
+                let age = 30;
+                let city = "Paris";
+                
+                // Old way (string concatenation)
+                let oldWay = "My name is " + name + ", I am " + age + " years old, and I live in " + city + ".";
+                
+                // Template literal way
+                let newWay = `My name is ${name}, I am ${age} years old, and I live in ${city}.`;
+                
+                // Multi-line strings
+                let multiLine = `
+                    This is a
+                    multi-line
+                    string using
+                    template literals.
+                `;
+                
+                // Expressions in template literals
+                let expression = `The sum of 5 and 3 is ${5 + 3}`;
+            </div>
+
+            <div class="interactive">
+                <h3>🎮 Template Literal Builder</h3>
+                <input type="text" id="tlName" placeholder="Name">
+                <input type="number" id="tlAge" placeholder="Age">
+                <input type="text" id="tlCity" placeholder="City">
+                <button onclick="buildTemplateLiteral()">Build Message</button>
+                <div id="tlOutput"></div>
+            </div>
+        </div>
+
+        <!-- Best Practices Section -->
+        <div class="section">
+            <h2>✅ Best Practices</h2>
+            
+            <div class="example">
+                // ✅ Good practices
+                const API_URL = "https://api.example.com";
+                let userCount = 0;
+                let isLoggedIn = false;
+                
+                // ❌ Avoid these
+                var oldWay = "don't use var";
+                let a = 1; // unclear variable name
+                const PI = 3.14; // should be uppercase for constants
+            </div>
+
+            <div class="output">
+                💡 Tips:
+                <ul>
+                    <li>Use const by default, let when you need to reassign</li>
+                    <li>Use descriptive variable names</li>
+                    <li>Use UPPERCASE for constants</li>
+                    <li>Initialize variables when declaring them</li>
+                    <li>Use template literals for string interpolation</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

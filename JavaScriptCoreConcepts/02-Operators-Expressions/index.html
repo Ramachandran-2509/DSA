@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Operators & Expressions</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        .section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 2px solid #ecf0f1;
+            border-radius: 10px;
+            background: #f8f9fa;
+        }
+        .section h2 {
+            color: #3498db;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .example {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        .output {
+            background: #27ae60;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .warning {
+            background: #f39c12;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .error {
+            background: #e74c3c;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .interactive {
+            background: #9b59b6;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+        input {
+            padding: 8px;
+            border: 2px solid #bdc3c7;
+            border-radius: 5px;
+            margin: 5px;
+        }
+        .nav-buttons {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .nav-buttons button {
+            background: #34495e;
+            margin: 0 10px;
+        }
+        .nav-buttons button:hover {
+            background: #2c3e50;
+        }
+        .operator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .operator-card {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        .operator-card h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .result-display {
+            background: #34495e;
+            color: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 JavaScript Operators & Expressions</h1>
+        
+        <div class="nav-buttons">
+            <button onclick="window.location.href='../01-Variables-DataTypes/index.html'">⬅️ Previous: Variables</button>
+            <button onclick="window.location.href='../README.md'">📚 Back to Guide</button>
+            <button onclick="window.location.href='../03-ControlFlow/index.html'">➡️ Next: Control Flow</button>
+        </div>
+
+        <!-- Arithmetic Operators Section -->
+        <div class="section">
+            <h2>➕ Arithmetic Operators</h2>
+            
+            <div class="operator-grid">
+                <div class="operator-card">
+                    <h4>Addition (+)</h4>
+                    <div class="example">
+                        let a = 5 + 3;        // 8
+                        let b = "5" + 3;      // "53" (string concatenation)
+                        let c = 5 + "3";      // "53"
+                    </div>
+                </div>
+                
+                <div class="operator-card">
+                    <h4>Subtraction (-)</h4>
+                    <div class="example">
+                        let a = 10 - 3;       // 7
+                        let b = "10" - 3;     // 7 (type coercion)
+                        let c = 10 - "3";     // 7
+                    </div>
+                </div>
+                
+                <div class="operator-card">
+                    <h4>Multiplication (*)</h4>
+                    <div class="example">
+                        let a = 4 * 3;        // 12
+                        let b = "4" * 3;      // 12
+                        let c = 4 * "3";      // 12
+                    </div>
+                </div>
+                
+                <div class="operator-card">
+                    <h4>Division (/)</h4>
+                    <div class="example">
+                        let a = 15 / 3;       // 5
+                        let b = 10 / 3;       // 3.333...
+                        let c = 10 / 0;       // Infinity
+                    </div>
+                </div>
+                
+                <div class="operator-card">
+                    <h4>Modulus (%)</h4>
+                    <div class="example">
+                        let a = 17 % 5;       // 2
+                        let b = 10 % 3;       // 1
+                        let c = 8 % 2;        // 0 (even number)
+                    </div>
+                </div>
+                
+                <div class="operator-card">
+                    <h4>Exponentiation (**)</h4>
+                    <div class="example">
+                        let a = 2 ** 3;       // 8
+                        let b = 5 ** 2;       // 25
+                        let c = 2 ** 0;       // 1
+                    </div>
+                </div>
+            </div>
+
+            <div class="interactive">
+                <h3>🎮 Arithmetic Calculator</h3>
+                <input type="number" id="num1" placeholder="First number">
+                <select id="arithmeticOp">
+                    <option value="+">+</option>
+                    <option value="-">-</option>
+                    <option value="*">×</option>
+                    <option value="/">÷</option>
+                    <option value="%">%</option>
+                    <option value="**">^</option>
+                </select>
+                <input type="number" id="num2" placeholder="Second number">
+                <button onclick="calculateArithmetic()">Calculate</button>
+                <div id="arithmeticResult"></div>
+            </div>
+        </div>
+
+        <!-- Assignment Operators Section -->
+        <div class="section">
+            <h2>📝 Assignment Operators</h2>
+            
+            <div class="operator-grid">
+                <div class="operator-card">
+                    <h4>Basic Assignment (=)</h4>
+                    <div class="example">
+                        let x = 5;
+                        let y = x;            // y = 5
+                    </div>
+                </div>
+                
+                <div class="operator-card">
+                    <h4>Addition Assignment (+=)</h4>
+                    <div class="example">
+                        let x = 5;
+                        x += 3;               // x = x + 3 = 8
+                    </div>
+                </div>
+                
+                <div class="operator-card">
+                    <h4>Subtraction Assignment (-=)</h4>
+                    <div class="example">
+                        let x = 10;
+                        x -= 4;               // x = x - 4 = 6
+                    </div>
+                </div>
+                
+                <div class="operator-card">
+                    <h4>Multiplication Assignment (*=)</h4>
+                    <div class="example">
+                        let x = 3;
+                        x *= 5;               // x = x * 5 = 15
+                    </div>
+                </div>
+                
+                <div class="operator-card">
+                    <h4>Division Assignment (/=)</h4>
+                    <div class="example">
+                        let x = 20;
+                        x /= 4;               // x = x / 4 = 5
+                    </div>
+                </div>
+                
+                <div class="operator-card">
+                    <h4>Modulus Assignment (%=)</h4>
+                    <div class="example">
+                        let x = 17;
+                        x %= 5;               // x = x % 5 = 2
+                    </div>
+                </div>
+            </div>
+
+            <div class="interactive">
+                <h3>🎮 Assignment Operator Demo</h3>
+                <button onclick="demoAssignment()">Run Assignment Examples</button>
+                <div id="assignmentResult"></div>
+            </div>
+        </div>
+
+        <!-- Comparison Operators Section -->
+        <div class="section">
+            <h2>🔍 Comparison Operators</h2>
+            
+            <div class="operator-grid">
+                <div class="operator-card">
+                    <h4>Equal (==)</h4>
+                    <div class="example">
+                        5 == "5"              // true (type coercion)
+                        5 == 5                // true
+                        5 == 6                // false
+                    </div>
+                </div>
+                
+                <div class="operator-card">
+                    <h4>Strict Equal (===)</h4>
+                    <div class="example">
+                        5 === "5"             // false (no coercion)
+                        5 === 5               // true
+                        null === undefined    // false
+                    </div>
+                </div>
+                
+                <div class="operator-card">
+                    <h4>Not Equal (!=)</h4>
+                    <div class="example">
+                        5 != "6"              // true
+                        5 != 5                // false
+                        5 != "5"              // false (coercion)
+                    </div>
+                </div>
+                
+                <div class="operator-card">
+                    <h4>Strict Not Equal (!==)</h4>
+                    <div class="example">
+                        5 !== "5"             // true (no coercion)
+                        5 !== 6               // true
+                        5 !== 5               // false
+                    </div>
+                </div>
+                
+                <div class="operator-card">
+                    <h4>Greater Than (>)</h4>
+                    <div class="example">
+                        10 > 5                // true
+                        5 > 10                // false
+                        5 > 5                 // false
+                    </div>
+                </div>
+                
+                <div class="operator-card">
+                    <h4>Less Than (<)</h4>
+                    <div class="example">
+                        3 < 7                 // true
+                        7 < 3                 // false
+                        3 < 3                 // false
+                    </div>
+                </div>
+            </div>
+
+            <div class="warning">
+                ⚠️ Use strict equality (===) and strict inequality (!==) to avoid unexpected type coercion.
+            </div>
+
+            <div class="interactive">
+                <h3>🎮 Comparison Tester</h3>
+                <input type="text" id="comp1" placeholder="First value">
+                <select id="comparisonOp">
+                    <option value="==">==</option>
+                    <option value="===">===</option>
+                    <option value="!=">!=</option>
+                    <option value="!==">!==</option>
+                    <option value=">">></option>
+                    <option value="<"><</option>
+                    <option value=">=">>=</option>
+                    <option value="<="><=</option>
+                </select>
+                <input type="text" id="comp2" placeholder="Second value">
+                <button onclick="testComparison()">Test Comparison</button>
+                <div id="comparisonResult"></div>
+            </div>
+        </div>
+
+        <!-- Logical Operators Section -->
+        <div class="section">
+            <h2>🧠 Logical Operators</h2>
+            
+            <div class="operator-grid">
+                <div class="operator-card">
+                    <h4>Logical AND (&&)</h4>
+                    <div class="example">
+                        true && true          // true
+                        true && false         // false
+                        false && true         // false
+                        false && false        // false
+                        
+                        // Short-circuit evaluation
+                        false && console.log("This won't run");
+                    </div>
+                </div>
+                
+                <div class="operator-card">
+                    <h4>Logical OR (||)</h4>
+                    <div class="example">
+                        true || true          // true
+                        true || false         // true
+                        false || true         // true
+                        false || false        // false
+                        
+                        // Short-circuit evaluation
+                        true || console.log("This won't run");
+                    </div>
+                </div>
+                
+                <div class="operator-card">
+                    <h4>Logical NOT (!)</h4>
+                    <div class="example">
+                        !true                 // false
+                        !false                // true
+                        !0                    // true
+                        !""                   // true
+                        !null                 // true
+                        !undefined            // true
+                    </div>
+                </div>
+                
+                <div class="operator-card">
+                    <h4>Nullish Coalescing (??)</h4>
+                    <div class="example">
+                        null ?? "default"     // "default"
+                        undefined ?? "default" // "default"
+                        0 ?? "default"        // 0
+                        "" ?? "default"       // ""
+                        false ?? "default"    // false
+                    </div>
+                </div>
+            </div>
+
+            <div class="interactive">
+                <h3>🎮 Logical Operator Tester</h3>
+                <input type="text" id="logical1" placeholder="First value (true/false)">
+                <select id="logicalOp">
+                    <option value="&&">AND (&&)</option>
+                    <option value="||">OR (||)</option>
+                </select>
+                <input type="text" id="logical2" placeholder="Second value (true/false)">
+                <button onclick="testLogical()">Test Logical</button>
+                <div id="logicalResult"></div>
+            </div>
+        </div>
+
+        <!-- Increment/Decrement Section -->
+        <div class="section">
+            <h2>📈 Increment & Decrement Operators</h2>
+            
+            <div class="operator-grid">
+                <div class="operator-card">
+                    <h4>Prefix Increment (++x)</h4>
+                    <div class="example">
+                        let x = 5;
+                        let y = ++x;          // x = 6, y = 6
+                        console.log(x, y);    // 6, 6
+                    </div>
+                </div>
+                
+                <div class="operator-card">
+                    <h4>Postfix Increment (x++)</h4>
+                    <div class="example">
+                        let x = 5;
+                        let y = x++;          // x = 6, y = 5
+                        console.log(x, y);    // 6, 5
+                    </div>
+                </div>
+                
+                <div class="operator-card">
+                    <h4>Prefix Decrement (--x)</h4>
+                    <div class="example">
+                        let x = 5;
+                        let y = --x;          // x = 4, y = 4
+                        console.log(x, y);    // 4, 4
+                    </div>
+                </div>
+                
+                <div class="operator-card">
+                    <h4>Postfix Decrement (x--)</h4>
+                    <div class="example">
+                        let x = 5;
+                        let y = x--;          // x = 4, y = 5
+                        console.log(x, y);    // 4, 5
+                    </div>
+                </div>
+            </div>
+
+            <div class="warning">
+                ⚠️ Be careful with increment/decrement operators. Prefix (++x) increments before use, postfix (x++) increments after use.
+            </div>
+
+            <div class="interactive">
+                <h3>🎮 Increment/Decrement Demo</h3>
+                <button onclick="demoIncrement()">Run Increment Examples</button>
+                <div id="incrementResult"></div>
+            </div>
+        </div>
+
+        <!-- Bitwise Operators Section -->
+        <div class="section">
+            <h2>🔢 Bitwise Operators</h2>
+            
+            <div class="operator-grid">
+                <div class="operator-card">
+                    <h4>AND (&)</h4>
+                    <div class="example">
+                        5 & 3                 // 1
+                        // 5 = 101, 3 = 011
+                        // Result: 001 = 1
+                    </div>
+                </div>
+                
+                <div class="operator-card">
+                    <h4>OR (|)</h4>
+                    <div class="example">
+                        5 | 3                 // 7
+                        // 5 = 101, 3 = 011
+                        // Result: 111 = 7
+                    </div>
+                </div>
+                
+                <div class="operator-card">
+                    <h4>XOR (^)</h4>
+                    <div class="example">
+                        5 ^ 3                 // 6
+                        // 5 = 101, 3 = 011
+                        // Result: 110 = 6
+                    </div>
+                </div>
+                
+                <div class="operator-card">
+                    <h4>NOT (~)</h4>
+                    <div class="example">
+                        ~5                    // -6
+                        // 5 = 000...101
+                        // ~5 = 111...010 = -6
+                    </div>
+                </div>
+            </div>
+
+            <div class="interactive">
+                <h3>🎮 Bitwise Calculator</h3>
+                <input type="number" id="bit1" placeholder="First number">
+                <select id="bitwiseOp">
+                    <option value="&">AND (&)</option>
+                    <option value="|">OR (|)</option>
+                    <option value="^">XOR (^)</option>
+                </select>
+                <input type="number" id="bit2" placeholder="Second number">
+                <button onclick="calculateBitwise()">Calculate</button>
+                <div id="bitwiseResult"></div>
+            </div>
+        </div>
+
+        <!-- Operator Precedence Section -->
+        <div class="section">
+            <h2>📊 Operator Precedence</h2>
+            
+            <div class="example">
+                // Operator precedence determines evaluation order
+                let result1 = 2 + 3 * 4;      // 14 (not 20)
+                let result2 = (2 + 3) * 4;    // 20
+                
+                // Precedence order (highest to lowest):
+                // 1. () Parentheses
+                // 2. ** Exponentiation
+                // 3. ++ -- (prefix)
+                // 4. * / % Multiplication, Division, Modulus
+                // 5. + - Addition, Subtraction
+                // 6. << >> >>> Bitwise shifts
+                // 7. < <= > >= Comparison
+                // 8. == != === !== Equality
+                // 9. && Logical AND
+                // 10. || Logical OR
+                // 11. = += -= *= /= %= Assignment
+            </div>
+
+            <div class="interactive">
+                <h3>🎮 Precedence Tester</h3>
+                <input type="text" id="expression" placeholder="Enter expression (e.g., 2+3*4)" style="width: 200px;">
+                <button onclick="evaluateExpression()">Evaluate</button>
+                <div id="precedenceResult"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+

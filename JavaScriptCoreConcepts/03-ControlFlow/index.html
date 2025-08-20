@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Control Flow</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        .section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 2px solid #ecf0f1;
+            border-radius: 10px;
+            background: #f8f9fa;
+        }
+        .section h2 {
+            color: #3498db;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .example {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        .output {
+            background: #27ae60;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .warning {
+            background: #f39c12;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .error {
+            background: #e74c3c;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .interactive {
+            background: #9b59b6;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+        input, select, textarea {
+            padding: 8px;
+            border: 2px solid #bdc3c7;
+            border-radius: 5px;
+            margin: 5px;
+        }
+        .nav-buttons {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .nav-buttons button {
+            background: #34495e;
+            margin: 0 10px;
+        }
+        .nav-buttons button:hover {
+            background: #2c3e50;
+        }
+        .flow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .flow-card {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        .flow-card h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .result-display {
+            background: #34495e;
+            color: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+        .loop-visualization {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+        .step-indicator {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            margin: 0 2px;
+            font-size: 0.8em;
+        }
+        .step-indicator.active {
+            background: #27ae60;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔄 JavaScript Control Flow</h1>
+        
+        <div class="nav-buttons">
+            <button onclick="window.location.href='../02-Operators-Expressions/index.html'">⬅️ Previous: Operators</button>
+            <button onclick="window.location.href='../README.md'">📚 Back to Guide</button>
+            <button onclick="window.location.href='../04-Functions/index.html'">➡️ Next: Functions</button>
+        </div>
+
+        <!-- Conditional Statements Section -->
+        <div class="section">
+            <h2>🔀 Conditional Statements</h2>
+            
+            <div class="flow-grid">
+                <div class="flow-card">
+                    <h4>if Statement</h4>
+                    <div class="example">
+                        if (condition) {
+                            // code to execute
+                        }
+                        
+                        let age = 18;
+                        if (age >= 18) {
+                            console.log("You are an adult");
+                        }
+                    </div>
+                </div>
+                
+                <div class="flow-card">
+                    <h4>if...else Statement</h4>
+                    <div class="example">
+                        if (condition) {
+                            // code if true
+                        } else {
+                            // code if false
+                        }
+                        
+                        let score = 85;
+                        if (score >= 90) {
+                            console.log("A grade");
+                        } else {
+                            console.log("B grade or lower");
+                        }
+                    </div>
+                </div>
+                
+                <div class="flow-card">
+                    <h4>if...else if...else</h4>
+                    <div class="example">
+                        if (condition1) {
+                            // code for condition1
+                        } else if (condition2) {
+                            // code for condition2
+                        } else {
+                            // default code
+                        }
+                        
+                        let grade = 85;
+                        if (grade >= 90) {
+                            console.log("A");
+                        } else if (grade >= 80) {
+                            console.log("B");
+                        } else if (grade >= 70) {
+                            console.log("C");
+                        } else {
+                            console.log("F");
+                        }
+                    </div>
+                </div>
+                
+                <div class="flow-card">
+                    <h4>Ternary Operator</h4>
+                    <div class="example">
+                        condition ? valueIfTrue : valueIfFalse
+                        
+                        let age = 20;
+                        let status = age >= 18 ? "adult" : "minor";
+                        console.log(status); // "adult"
+                        
+                        // Nested ternary
+                        let grade = 85;
+                        let letter = grade >= 90 ? "A" : 
+                                   grade >= 80 ? "B" : 
+                                   grade >= 70 ? "C" : "F";
+                    </div>
+                </div>
+            </div>
+
+            <div class="interactive">
+                <h3>🎮 Grade Calculator</h3>
+                <input type="number" id="gradeInput" placeholder="Enter grade (0-100)" min="0" max="100">
+                <button onclick="calculateGrade()">Calculate Grade</button>
+                <div id="gradeResult"></div>
+            </div>
+        </div>
+
+        <!-- Switch Statement Section -->
+        <div class="section">
+            <h2>🔀 Switch Statement</h2>
+            
+            <div class="example">
+                switch (expression) {
+                    case value1:
+                        // code for value1
+                        break;
+                    case value2:
+                        // code for value2
+                        break;
+                    default:
+                        // default code
+                }
+                
+                let day = "Monday";
+                switch (day) {
+                    case "Monday":
+                        console.log("Start of work week");
+                        break;
+                    case "Friday":
+                        console.log("TGIF!");
+                        break;
+                    case "Saturday":
+                    case "Sunday":
+                        console.log("Weekend!");
+                        break;
+                    default:
+                        console.log("Regular work day");
+                }
+            </div>
+
+            <div class="warning">
+                ⚠️ Don't forget the <code>break</code> statement! Without it, execution will "fall through" to the next case.
+            </div>
+
+            <div class="interactive">
+                <h3>🎮 Day of Week</h3>
+                <select id="daySelect">
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                    <option value="Sunday">Sunday</option>
+                </select>
+                <button onclick="getDayMessage()">Get Message</button>
+                <div id="dayResult"></div>
+            </div>
+        </div>
+
+        <!-- Loops Section -->
+        <div class="section">
+            <h2>🔄 Loops</h2>
+            
+            <div class="flow-grid">
+                <div class="flow-card">
+                    <h4>for Loop</h4>
+                    <div class="example">
+                        for (initialization; condition; increment) {
+                            // code to repeat
+                        }
+                        
+                        for (let i = 0; i < 5; i++) {
+                            console.log(i); // 0, 1, 2, 3, 4
+                        }
+                        
+                        // Iterating over array
+                        let fruits = ["apple", "banana", "orange"];
+                        for (let i = 0; i < fruits.length; i++) {
+                            console.log(fruits[i]);
+                        }
+                    </div>
+                </div>
+                
+                <div class="flow-card">
+                    <h4>while Loop</h4>
+                    <div class="example">
+                        while (condition) {
+                            // code to repeat
+                        }
+                        
+                        let count = 0;
+                        while (count < 5) {
+                            console.log(count);
+                            count++;
+                        }
+                        
+                        // Infinite loop prevention
+                        let attempts = 0;
+                        while (attempts < 10) {
+                            // do something
+                            attempts++;
+                        }
+                    </div>
+                </div>
+                
+                <div class="flow-card">
+                    <h4>do...while Loop</h4>
+                    <div class="example">
+                        do {
+                            // code to repeat
+                        } while (condition);
+                        
+                        let num = 0;
+                        do {
+                            console.log(num);
+                            num++;
+                        } while (num < 5);
+                        
+                        // Always executes at least once
+                        let x = 10;
+                        do {
+                            console.log("This runs once");
+                        } while (x < 5);
+                    </div>
+                </div>
+                
+                <div class="flow-card">
+                    <h4>for...of Loop (ES6+)</h4>
+                    <div class="example">
+                        for (let item of iterable) {
+                            // code for each item
+                        }
+                        
+                        let colors = ["red", "green", "blue"];
+                        for (let color of colors) {
+                            console.log(color);
+                        }
+                        
+                        // Works with strings
+                        for (let char of "hello") {
+                            console.log(char);
+                        }
+                    </div>
+                </div>
+                
+                <div class="flow-card">
+                    <h4>for...in Loop</h4>
+                    <div class="example">
+                        for (let key in object) {
+                            // code for each property
+                        }
+                        
+                        let person = {
+                            name: "John",
+                            age: 30,
+                            city: "NYC"
+                        };
+                        
+                        for (let key in person) {
+                            console.log(key + ": " + person[key]);
+                        }
+                    </div>
+                </div>
+                
+                <div class="flow-card">
+                    <h4>Array Methods</h4>
+                    <div class="example">
+                        // forEach
+                        [1, 2, 3].forEach(num => {
+                            console.log(num);
+                        });
+                        
+                        // map
+                        let doubled = [1, 2, 3].map(num => num * 2);
+                        
+                        // filter
+                        let evens = [1, 2, 3, 4].filter(num => num % 2 === 0);
+                    </div>
+                </div>
+            </div>
+
+            <div class="interactive">
+                <h3>🎮 Loop Visualizer</h3>
+                <select id="loopType">
+                    <option value="for">for Loop</option>
+                    <option value="while">while Loop</option>
+                    <option value="doWhile">do...while Loop</option>
+                    <option value="forOf">for...of Loop</option>
+                </select>
+                <input type="number" id="loopCount" placeholder="Number of iterations" value="5" min="1" max="20">
+                <button onclick="visualizeLoop()">Run Loop</button>
+                <div id="loopResult"></div>
+            </div>
+        </div>
+
+        <!-- Break and Continue Section -->
+        <div class="section">
+            <h2>⏹️ Break and Continue</h2>
+            
+            <div class="flow-grid">
+                <div class="flow-card">
+                    <h4>break Statement</h4>
+                    <div class="example">
+                        // Exits the loop immediately
+                        for (let i = 0; i < 10; i++) {
+                            if (i === 5) {
+                                break; // Exit loop when i is 5
+                            }
+                            console.log(i); // 0, 1, 2, 3, 4
+                        }
+                        
+                        // In switch statements
+                        switch (value) {
+                            case 1:
+                                console.log("One");
+                                break; // Exit switch
+                            case 2:
+                                console.log("Two");
+                                break;
+                        }
+                    </div>
+                </div>
+                
+                <div class="flow-card">
+                    <h4>continue Statement</h4>
+                    <div class="example">
+                        // Skips current iteration, continues with next
+                        for (let i = 0; i < 10; i++) {
+                            if (i % 2 === 0) {
+                                continue; // Skip even numbers
+                            }
+                            console.log(i); // 1, 3, 5, 7, 9
+                        }
+                        
+                        // Skip processing for certain conditions
+                        let numbers = [1, 2, 3, 4, 5];
+                        for (let num of numbers) {
+                            if (num === 3) {
+                                continue; // Skip 3
+                            }
+                            console.log(num); // 1, 2, 4, 5
+                        }
+                    </div>
+                </div>
+                
+                <div class="flow-card">
+                    <h4>Labeled Statements</h4>
+                    <div class="example">
+                        // Break out of nested loops
+                        outerLoop: for (let i = 0; i < 3; i++) {
+                            for (let j = 0; j < 3; j++) {
+                                if (i === 1 && j === 1) {
+                                    break outerLoop; // Exit both loops
+                                }
+                                console.log(i, j);
+                            }
+                        }
+                        
+                        // Continue with labeled loop
+                        outer: for (let i = 0; i < 3; i++) {
+                            for (let j = 0; j < 3; j++) {
+                                if (j === 1) {
+                                    continue outer; // Skip to next i
+                                }
+                                console.log(i, j);
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="interactive">
+                <h3>🎮 Break/Continue Demo</h3>
+                <button onclick="demoBreakContinue()">Run Demo</button>
+                <div id="breakContinueResult"></div>
+            </div>
+        </div>
+
+        <!-- Error Handling Section -->
+        <div class="section">
+            <h2>⚠️ Error Handling</h2>
+            
+            <div class="flow-grid">
+                <div class="flow-card">
+                    <h4>try...catch</h4>
+                    <div class="example">
+                        try {
+                            // Code that might throw an error
+                            let result = riskyOperation();
+                        } catch (error) {
+                            // Handle the error
+                            console.log("Error:", error.message);
+                        }
+                        
+                        try {
+                            let num = parseInt("abc");
+                            if (isNaN(num)) {
+                                throw new Error("Invalid number");
+                            }
+                        } catch (error) {
+                            console.log("Caught error:", error.message);
+                        }
+                    </div>
+                </div>
+                
+                <div class="flow-card">
+                    <h4>try...catch...finally</h4>
+                    <div class="example">
+                        try {
+                            // Risky code
+                            openFile();
+                        } catch (error) {
+                            // Handle error
+                            console.log("Error:", error.message);
+                        } finally {
+                            // Always executes
+                            closeFile();
+                        }
+                        
+                        // finally runs even if return is used
+                        function example() {
+                            try {
+                                return "success";
+                            } finally {
+                                console.log("Cleanup");
+                            }
+                        }
+                    </div>
+                </div>
+                
+                <div class="flow-card">
+                    <h4>Custom Errors</h4>
+                    <div class="example">
+                        class ValidationError extends Error {
+                            constructor(message) {
+                                super(message);
+                                this.name = "ValidationError";
+                            }
+                        }
+                        
+                        function validateAge(age) {
+                            if (age < 0) {
+                                throw new ValidationError("Age cannot be negative");
+                            }
+                            if (age > 150) {
+                                throw new ValidationError("Age seems unrealistic");
+                            }
+                        }
+                        
+                        try {
+                            validateAge(-5);
+                        } catch (error) {
+                            if (error instanceof ValidationError) {
+                                console.log("Validation error:", error.message);
+                            }
+                        }
+                    </div>
+                </div>
+                
+                <div class="flow-card">
+                    <h4>Error Types</h4>
+                    <div class="example">
+                        // Common error types
+                        try {
+                            // ReferenceError
+                            console.log(undefinedVariable);
+                        } catch (error) {
+                            console.log(error.name); // "ReferenceError"
+                        }
+                        
+                        try {
+                            // TypeError
+                            null.someMethod();
+                        } catch (error) {
+                            console.log(error.name); // "TypeError"
+                        }
+                        
+                        try {
+                            // SyntaxError (caught at parse time)
+                            eval("let x = ;");
+                        } catch (error) {
+                            console.log(error.name); // "SyntaxError"
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="interactive">
+                <h3>🎮 Error Handler</h3>
+                <textarea id="errorCode" placeholder="Enter JavaScript code to test error handling" rows="4" style="width: 100%;">console.log(undefinedVariable);</textarea>
+                <button onclick="testErrorHandling()">Test Code</button>
+                <div id="errorResult"></div>
+            </div>
+        </div>
+
+        <!-- Best Practices Section -->
+        <div class="section">
+            <h2>✅ Best Practices</h2>
+            
+            <div class="example">
+                // ✅ Good practices
+                
+                // 1. Use strict equality in conditions
+                if (value === 5) { /* ... */ }
+                
+                // 2. Avoid deep nesting
+                if (condition1) {
+                    if (condition2) {
+                        if (condition3) {
+                            // Too nested!
+                        }
+                    }
+                }
+                
+                // Better: Early return
+                if (!condition1) return;
+                if (!condition2) return;
+                if (!condition3) return;
+                // Main logic here
+                
+                // 3. Use switch for multiple conditions
+                switch (value) {
+                    case 1: return "one";
+                    case 2: return "two";
+                    default: return "unknown";
+                }
+                
+                // 4. Always use braces
+                if (condition) {
+                    doSomething();
+                }
+                
+                // 5. Handle errors properly
+                try {
+                    riskyOperation();
+                } catch (error) {
+                    console.error("Operation failed:", error);
+                    // Handle gracefully
+                }
+            </div>
+
+            <div class="output">
+                💡 Tips:
+                <ul>
+                    <li>Use <code>===</code> instead of <code>==</code> for comparisons</li>
+                    <li>Avoid deep nesting - use early returns or guard clauses</li>
+                    <li>Always use braces for control structures</li>
+                    <li>Handle errors gracefully with try...catch</li>
+                    <li>Use appropriate loop types for different scenarios</li>
+                    <li>Be careful with infinite loops - always have an exit condition</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

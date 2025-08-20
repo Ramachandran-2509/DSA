@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Functions</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        .section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 2px solid #ecf0f1;
+            border-radius: 10px;
+            background: #f8f9fa;
+        }
+        .section h2 {
+            color: #3498db;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .example {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        .output {
+            background: #27ae60;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .warning {
+            background: #f39c12;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .error {
+            background: #e74c3c;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .interactive {
+            background: #9b59b6;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+        input, select, textarea {
+            padding: 8px;
+            border: 2px solid #bdc3c7;
+            border-radius: 5px;
+            margin: 5px;
+        }
+        .nav-buttons {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .nav-buttons button {
+            background: #34495e;
+            margin: 0 10px;
+        }
+        .nav-buttons button:hover {
+            background: #2c3e50;
+        }
+        .function-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .function-card {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        .function-card h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .result-display {
+            background: #34495e;
+            color: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+        .function-visualization {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+        .param-highlight {
+            background: #e74c3c;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            margin: 0 2px;
+            font-size: 0.9em;
+        }
+        .return-highlight {
+            background: #27ae60;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            margin: 0 2px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 JavaScript Functions</h1>
+        
+        <div class="nav-buttons">
+            <button onclick="window.location.href='../03-ControlFlow/index.html'">⬅️ Previous: Control Flow</button>
+            <button onclick="window.location.href='../README.md'">📚 Back to Guide</button>
+            <button onclick="window.location.href='../05-Arrays/index.html'">➡️ Next: Arrays</button>
+        </div>
+
+        <!-- Function Declarations Section -->
+        <div class="section">
+            <h2>📝 Function Declarations</h2>
+            
+            <div class="function-grid">
+                <div class="function-card">
+                    <h4>Basic Function Declaration</h4>
+                    <div class="example">
+                        function greet(name) {
+                            return "Hello, " + name + "!";
+                        }
+                        
+                        let message = greet("John");
+                        console.log(message); // "Hello, John!"
+                    </div>
+                </div>
+                
+                <div class="function-card">
+                    <h4>Function with Multiple Parameters</h4>
+                    <div class="example">
+                        function add(a, b) {
+                            return a + b;
+                        }
+                        
+                        let sum = add(5, 3);
+                        console.log(sum); // 8
+                        
+                        // Default parameters (ES6+)
+                        function multiply(a, b = 1) {
+                            return a * b;
+                        }
+                        
+                        console.log(multiply(5)); // 5
+                        console.log(multiply(5, 3)); // 15
+                    </div>
+                </div>
+                
+                <div class="function-card">
+                    <h4>Function with Rest Parameters</h4>
+                    <div class="example">
+                        function sum(...numbers) {
+                            return numbers.reduce((total, num) => total + num, 0);
+                        }
+                        
+                        console.log(sum(1, 2, 3)); // 6
+                        console.log(sum(1, 2, 3, 4, 5)); // 15
+                        
+                        function createArray(...items) {
+                            return items;
+                        }
+                        
+                        let arr = createArray(1, 2, 3);
+                        console.log(arr); // [1, 2, 3]
+                    </div>
+                </div>
+                
+                <div class="function-card">
+                    <h4>Function with Destructuring</h4>
+                    <div class="example">
+                        function processUser({name, age, city = "Unknown"}) {
+                            return `${name} is ${age} years old from ${city}`;
+                        }
+                        
+                        let user = {name: "John", age: 30};
+                        let result = processUser(user);
+                        console.log(result); // "John is 30 years old from Unknown"
+                        
+                        // Array destructuring
+                        function getFirstLast([first, ...rest]) {
+                            return {first, last: rest[rest.length - 1]};
+                        }
+                        
+                        let names = ["Alice", "Bob", "Charlie"];
+                        let {first, last} = getFirstLast(names);
+                        console.log(first, last); // "Alice", "Charlie"
+                    </div>
+                </div>
+            </div>
+
+            <div class="interactive">
+                <h3>🎮 Function Calculator</h3>
+                <input type="number" id="calcNum1" placeholder="First number">
+                <select id="calcOperator">
+                    <option value="add">Add (+)</option>
+                    <option value="subtract">Subtract (-)</option>
+                    <option value="multiply">Multiply (×)</option>
+                    <option value="divide">Divide (÷)</option>
+                </select>
+                <input type="number" id="calcNum2" placeholder="Second number">
+                <button onclick="calculateWithFunction()">Calculate</button>
+                <div id="calcResult"></div>
+            </div>
+        </div>
+
+        <!-- Function Expressions Section -->
+        <div class="section">
+            <h2>📝 Function Expressions</h2>
+            
+            <div class="function-grid">
+                <div class="function-card">
+                    <h4>Anonymous Function Expression</h4>
+                    <div class="example">
+                        let greet = function(name) {
+                            return "Hello, " + name + "!";
+                        };
+                        
+                        console.log(greet("Alice")); // "Hello, Alice!"
+                        
+                        // Function expression in variable
+                        let calculate = function(a, b, operation) {
+                            switch(operation) {
+                                case 'add': return a + b;
+                                case 'subtract': return a - b;
+                                case 'multiply': return a * b;
+                                case 'divide': return a / b;
+                                default: return NaN;
+                            }
+                        };
+                    </div>
+                </div>
+                
+                <div class="function-card">
+                    <h4>Immediately Invoked Function Expression (IIFE)</h4>
+                    <div class="example">
+                        // Basic IIFE
+                        (function() {
+                            console.log("IIFE executed immediately");
+                        })();
+                        
+                        // IIFE with parameters
+                        (function(name) {
+                            console.log("Hello, " + name + "!");
+                        })("World");
+                        
+                        // IIFE that returns a value
+                        let result = (function(a, b) {
+                            return a + b;
+                        })(5, 3);
+                        
+                        console.log(result); // 8
+                    </div>
+                </div>
+                
+                <div class="function-card">
+                    <h4>Function as Object Property</h4>
+                    <div class="example">
+                        let calculator = {
+                            add: function(a, b) {
+                                return a + b;
+                            },
+                            subtract: function(a, b) {
+                                return a - b;
+                            },
+                            multiply: function(a, b) {
+                                return a * b;
+                            }
+                        };
+                        
+                        console.log(calculator.add(5, 3)); // 8
+                        console.log(calculator.multiply(4, 2)); // 8
+                        
+                        // Method shorthand (ES6+)
+                        let person = {
+                            name: "John",
+                            greet() {
+                                return "Hello, " + this.name + "!";
+                            }
+                        };
+                    </div>
+                </div>
+                
+                <div class="function-card">
+                    <h4>Function as Callback</h4>
+                    <div class="example">
+                        // Array methods with callbacks
+                        let numbers = [1, 2, 3, 4, 5];
+                        
+                        // forEach
+                        numbers.forEach(function(num) {
+                            console.log(num * 2);
+                        });
+                        
+                        // map
+                        let doubled = numbers.map(function(num) {
+                            return num * 2;
+                        });
+                        
+                        // filter
+                        let evens = numbers.filter(function(num) {
+                            return num % 2 === 0;
+                        });
+                        
+                        // reduce
+                        let sum = numbers.reduce(function(acc, num) {
+                            return acc + num;
+                        }, 0);
+                    </div>
+                </div>
+            </div>
+
+            <div class="interactive">
+                <h3>🎮 IIFE Demo</h3>
+                <button onclick="demoIIFE()">Run IIFE Examples</button>
+                <div id="iifeResult"></div>
+            </div>
+        </div>
+
+        <!-- Arrow Functions Section -->
+        <div class="section">
+            <h2>🏹 Arrow Functions (ES6+)</h2>
+            
+            <div class="function-grid">
+                <div class="function-card">
+                    <h4>Basic Arrow Functions</h4>
+                    <div class="example">
+                        // Single parameter
+                        let greet = name => "Hello, " + name + "!";
+                        
+                        // Multiple parameters
+                        let add = (a, b) => a + b;
+                        
+                        // No parameters
+                        let getRandom = () => Math.random();
+                        
+                        // Multiple lines
+                        let process = (a, b) => {
+                            let sum = a + b;
+                            let product = a * b;
+                            return {sum, product};
+                        };
+                        
+                        console.log(greet("Alice")); // "Hello, Alice!"
+                        console.log(add(5, 3)); // 8
+                    </div>
+                </div>
+                
+                <div class="function-card">
+                    <h4>Arrow Functions with Arrays</h4>
+                    <div class="example">
+                        let numbers = [1, 2, 3, 4, 5];
+                        
+                        // forEach
+                        numbers.forEach(num => console.log(num));
+                        
+                        // map
+                        let doubled = numbers.map(num => num * 2);
+                        
+                        // filter
+                        let evens = numbers.filter(num => num % 2 === 0);
+                        
+                        // reduce
+                        let sum = numbers.reduce((acc, num) => acc + num, 0);
+                        
+                        // find
+                        let firstEven = numbers.find(num => num % 2 === 0);
+                        
+                        // some
+                        let hasEven = numbers.some(num => num % 2 === 0);
+                        
+                        // every
+                        let allPositive = numbers.every(num => num > 0);
+                    </div>
+                </div>
+                
+                <div class="function-card">
+                    <h4>Arrow Functions vs Regular Functions</h4>
+                    <div class="example">
+                        // Regular function
+                        function regularFunction() {
+                            console.log("this:", this);
+                        }
+                        
+                        // Arrow function
+                        let arrowFunction = () => {
+                            console.log("this:", this);
+                        };
+                        
+                        let obj = {
+                            name: "Object",
+                            regular: regularFunction,
+                            arrow: arrowFunction
+                        };
+                        
+                        obj.regular(); // this: obj
+                        obj.arrow();   // this: window/global
+                        
+                        // Arrow functions don't have their own 'this'
+                        // They inherit 'this' from the enclosing scope
+                    </div>
+                </div>
+                
+                <div class="function-card">
+                    <h4>Arrow Functions with Destructuring</h4>
+                    <div class="example">
+                        // Object destructuring
+                        let processUser = ({name, age}) => `${name} is ${age} years old`;
+                        
+                        let user = {name: "John", age: 30};
+                        console.log(processUser(user)); // "John is 30 years old"
+                        
+                        // Array destructuring
+                        let getFirstLast = ([first, ...rest]) => ({
+                            first,
+                            last: rest[rest.length - 1]
+                        });
+                        
+                        let names = ["Alice", "Bob", "Charlie"];
+                        let {first, last} = getFirstLast(names);
+                        
+                        // Default parameters
+                        let greet = (name = "Guest") => `Hello, ${name}!`;
+                        console.log(greet()); // "Hello, Guest!"
+                    </div>
+                </div>
+            </div>
+
+            <div class="warning">
+                ⚠️ Arrow functions don't have their own <code>this</code>, <code>arguments</code>, <code>super</code>, or <code>new.target</code> bindings.
+            </div>
+
+            <div class="interactive">
+                <h3>🎮 Arrow Function Converter</h3>
+                <textarea id="functionCode" placeholder="Enter a regular function to convert to arrow function" rows="4" style="width: 100%;">function add(a, b) {
+    return a + b;
+}</textarea>
+                <button onclick="convertToArrow()">Convert to Arrow Function</button>
+                <div id="arrowResult"></div>
+            </div>
+        </div>
+
+        <!-- Advanced Function Concepts Section -->
+        <div class="section">
+            <h2>🚀 Advanced Function Concepts</h2>
+            
+            <div class="function-grid">
+                <div class="function-card">
+                    <h4>Closures</h4>
+                    <div class="example">
+                        function createCounter() {
+                            let count = 0;
+                            return function() {
+                                return ++count;
+                            };
+                        }
+                        
+                        let counter1 = createCounter();
+                        let counter2 = createCounter();
+                        
+                        console.log(counter1()); // 1
+                        console.log(counter1()); // 2
+                        console.log(counter2()); // 1
+                        
+                        // Closure with parameters
+                        function multiply(x) {
+                            return function(y) {
+                                return x * y;
+                            };
+                        }
+                        
+                        let multiplyByTwo = multiply(2);
+                        let multiplyByTen = multiply(10);
+                        
+                        console.log(multiplyByTwo(5)); // 10
+                        console.log(multiplyByTen(5)); // 50
+                    </div>
+                </div>
+                
+                <div class="function-card">
+                    <h4>Higher-Order Functions</h4>
+                    <div class="example">
+                        // Function that returns a function
+                        function createGreeter(greeting) {
+                            return function(name) {
+                                return greeting + ", " + name + "!";
+                            };
+                        }
+                        
+                        let sayHello = createGreeter("Hello");
+                        let sayGoodbye = createGreeter("Goodbye");
+                        
+                        console.log(sayHello("John")); // "Hello, John!"
+                        console.log(sayGoodbye("John")); // "Goodbye, John!"
+                        
+                        // Function that takes a function as parameter
+                        function processArray(arr, processor) {
+                            return arr.map(processor);
+                        }
+                        
+                        let numbers = [1, 2, 3, 4];
+                        let doubled = processArray(numbers, x => x * 2);
+                        let squared = processArray(numbers, x => x * x);
+                    </div>
+                </div>
+                
+                <div class="function-card">
+                    <h4>Function Composition</h4>
+                    <div class="example">
+                        // Compose function
+                        function compose(...fns) {
+                            return function(x) {
+                                return fns.reduceRight((acc, fn) => fn(acc), x);
+                            };
+                        }
+                        
+                        // Pipe function (left to right)
+                        function pipe(...fns) {
+                            return function(x) {
+                                return fns.reduce((acc, fn) => fn(acc), x);
+                            };
+                        }
+                        
+                        let addOne = x => x + 1;
+                        let double = x => x * 2;
+                        let square = x => x * x;
+                        
+                        let composed = compose(square, double, addOne);
+                        let piped = pipe(addOne, double, square);
+                        
+                        console.log(composed(3)); // ((3 + 1) * 2)² = 64
+                        console.log(piped(3));    // ((3 + 1) * 2)² = 64
+                    </div>
+                </div>
+                
+                <div class="function-card">
+                    <h4>Currying</h4>
+                    <div class="example">
+                        // Manual currying
+                        function add(a) {
+                            return function(b) {
+                                return function(c) {
+                                    return a + b + c;
+                                };
+                            };
+                        }
+                        
+                        let add5 = add(5);
+                        let add5And3 = add5(3);
+                        console.log(add5And3(2)); // 10
+                        
+                        // Auto-currying helper
+                        function curry(fn) {
+                            return function curried(...args) {
+                                if (args.length >= fn.length) {
+                                    return fn.apply(this, args);
+                                }
+                                return function(...moreArgs) {
+                                    return curried.apply(this, args.concat(moreArgs));
+                                };
+                            };
+                        }
+                        
+                        let curriedAdd = curry((a, b, c) => a + b + c);
+                        console.log(curriedAdd(1)(2)(3)); // 6
+                        console.log(curriedAdd(1, 2)(3)); // 6
+                        console.log(curriedAdd(1, 2, 3)); // 6
+                    </div>
+                </div>
+            </div>
+
+            <div class="interactive">
+                <h3>🎮 Closure Counter</h3>
+                <button onclick="createNewCounter()">Create New Counter</button>
+                <button onclick="incrementCounter()">Increment</button>
+                <button onclick="resetCounter()">Reset</button>
+                <div id="counterResult"></div>
+            </div>
+        </div>
+
+        <!-- Function Context and 'this' Section -->
+        <div class="section">
+            <h2>🎯 Function Context and 'this'</h2>
+            
+            <div class="function-grid">
+                <div class="function-card">
+                    <h4>Understanding 'this'</h4>
+                    <div class="example">
+                        // Global context
+                        console.log(this); // window (browser) or global (Node.js)
+                        
+                        // Method context
+                        let obj = {
+                            name: "Object",
+                            greet: function() {
+                                return "Hello from " + this.name;
+                            }
+                        };
+                        
+                        console.log(obj.greet()); // "Hello from Object"
+                        
+                        // Constructor context
+                        function Person(name) {
+                            this.name = name;
+                            this.greet = function() {
+                                return "Hello, I'm " + this.name;
+                            };
+                        }
+                        
+                        let person = new Person("John");
+                        console.log(person.greet()); // "Hello, I'm John"
+                    </div>
+                </div>
+                
+                <div class="function-card">
+                    <h4>Binding 'this'</h4>
+                    <div class="example">
+                        let person = {
+                            name: "John",
+                            greet: function() {
+                                return "Hello, " + this.name;
+                            }
+                        };
+                        
+                        // call() - calls function with given this and arguments
+                        let result1 = person.greet.call({name: "Alice"});
+                        
+                        // apply() - calls function with given this and array of arguments
+                        let result2 = person.greet.apply({name: "Bob"});
+                        
+                        // bind() - returns new function with bound this
+                        let boundGreet = person.greet.bind({name: "Charlie"});
+                        let result3 = boundGreet();
+                        
+                        console.log(result1); // "Hello, Alice"
+                        console.log(result2); // "Hello, Bob"
+                        console.log(result3); // "Hello, Charlie"
+                    </div>
+                </div>
+                
+                <div class="function-card">
+                    <h4>Arrow Functions and 'this'</h4>
+                    <div class="example">
+                        let obj = {
+                            name: "Object",
+                            regularMethod: function() {
+                                setTimeout(function() {
+                                    console.log("Regular:", this.name);
+                                }, 100);
+                            },
+                            arrowMethod: function() {
+                                setTimeout(() => {
+                                    console.log("Arrow:", this.name);
+                                }, 100);
+                            }
+                        };
+                        
+                        obj.regularMethod(); // "Regular: undefined"
+                        obj.arrowMethod();   // "Arrow: Object"
+                        
+                        // Arrow functions inherit 'this' from enclosing scope
+                        let timer = {
+                            seconds: 0,
+                            start() {
+                                setInterval(() => {
+                                    this.seconds++;
+                                    console.log(this.seconds);
+                                }, 1000);
+                            }
+                        };
+                    </div>
+                </div>
+                
+                <div class="function-card">
+                    <h4>Event Handlers and 'this'</h4>
+                    <div class="example">
+                        // In event handlers
+                        let button = document.createElement('button');
+                        button.textContent = "Click me";
+                        
+                        // Regular function - 'this' refers to the element
+                        button.addEventListener('click', function() {
+                            console.log("Regular:", this.textContent);
+                        });
+                        
+                        // Arrow function - 'this' refers to enclosing scope
+                        let handler = {
+                            message: "Hello from handler",
+                            setup() {
+                                button.addEventListener('click', () => {
+                                    console.log("Arrow:", this.message);
+                                });
+                            }
+                        };
+                        
+                        handler.setup();
+                    </div>
+                </div>
+            </div>
+
+            <div class="interactive">
+                <h3>🎮 'this' Context Demo</h3>
+                <button onclick="demoThisContext()">Run 'this' Demo</button>
+                <div id="thisResult"></div>
+            </div>
+        </div>
+
+        <!-- Best Practices Section -->
+        <div class="section">
+            <h2>✅ Best Practices</h2>
+            
+            <div class="example">
+                // ✅ Good practices
+                
+                // 1. Use meaningful function names
+                function calculateTotalPrice(items, taxRate) { /* ... */ }
+                
+                // 2. Keep functions small and focused
+                function validateEmail(email) {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    return emailRegex.test(email);
+                }
+                
+                // 3. Use default parameters
+                function greet(name = "Guest", greeting = "Hello") {
+                    return `${greeting}, ${name}!`;
+                }
+                
+                // 4. Use arrow functions for callbacks
+                const numbers = [1, 2, 3, 4, 5];
+                const doubled = numbers.map(num => num * 2);
+                
+                // 5. Use rest parameters for variable arguments
+                function sum(...numbers) {
+                    return numbers.reduce((acc, num) => acc + num, 0);
+                }
+                
+                // 6. Use destructuring for clean parameter handling
+                function processUser({name, age, email}) {
+                    return `User: ${name}, Age: ${age}, Email: ${email}`;
+                }
+                
+                // 7. Handle errors properly
+                function divide(a, b) {
+                    if (b === 0) {
+                        throw new Error("Division by zero");
+                    }
+                    return a / b;
+                }
+                
+                // 8. Use function composition for complex operations
+                const processData = pipe(
+                    filter(x => x > 0),
+                    map(x => x * 2),
+                    sum
+                );
+            </div>
+
+            <div class="output">
+                💡 Tips:
+                <ul>
+                    <li>Use descriptive function names that explain what the function does</li>
+                    <li>Keep functions small and focused on a single responsibility</li>
+                    <li>Use default parameters to make functions more flexible</li>
+                    <li>Prefer arrow functions for callbacks and short functions</li>
+                    <li>Use rest parameters instead of the arguments object</li>
+                    <li>Use destructuring for clean parameter handling</li>
+                    <li>Always handle errors and edge cases</li>
+                    <li>Use function composition for complex operations</li>
+                    <li>Be careful with 'this' binding in different contexts</li>
+                    <li>Use closures wisely to avoid memory leaks</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
